@@ -1,0 +1,6 @@
+{
+  "name": "Tulip",
+  "description": "Experimental Zulip client built with React",
+  "repository": "https://github.com/arpith/tulip",
+  "keywords": ["node", "reactjs"]
+}
