@@ -2,15 +2,20 @@ var React = require('react');
 
 var HomePage = React.createClass({
   getInitialState: function() {
-    return {apiKey: ''};
+    return {apiKey: '', email: ''};
   },
 
   login: function(e) {
     e.preventDefault();
+    console.log(this.state.email);
     console.log(this.state.apiKey);
   },
 
-  onChange: function(e) {
+  onEmailChange: function(e) {
+    this.setState({email: e.target.value});
+  },
+
+  onAPIKeyChange: function(e) {
     this.setState({apiKey: e.target.value});
   },
 
@@ -18,11 +23,18 @@ var HomePage = React.createClass({
     return <div>
     <p>Welcome to Tulip!</p>
     <form onSubmit={this.login}>
+    <label htmlFor="email">Email address</label>
+    <input id="email"
+      name="email"
+      placeholder="Your zulip account's email address"
+      onChange={this.onEmailChange}
+      value={this.state.email}>
+    </input>
     <label htmlFor="API-key">API Key</label>
     <input id="API-key" 
       name="API-key" 
       placeholder="Paste your API key here!" 
-      onChange={this.onChange} 
+      onChange={this.onAPIKeyChange} 
       value={this.state.apiKey}>
     </input>
     <button>Sign In!</button>
