@@ -27,6 +27,8 @@ var HomePage = React.createClass({
     </input>
     <button>Sign In!</button>
     </form>
+    <h2>Where do I find my API key????</h2>
+    <p>Sign in on zulip.com, and head to your settings page. In the section on "your bots" click view API key :) Copy it, and paste it here!</p>
     </div>;
   }
 });
