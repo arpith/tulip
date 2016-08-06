@@ -13,12 +13,12 @@ class SignInForm extends React.Component {
     console.log(this.state.apiKey);
   }
 
-  onEmailChange(value) {
-    this.setState({email: value});
+  onEmailChange(e) {
+    this.setState({email: e.target.value});
   }
 
-  onAPIKeyChange(value) {
-    this.setState({apiKey: value});
+  onAPIKeyChange(e) {
+    this.setState({apiKey: e.target.value});
   }
 
   render() {
@@ -28,14 +28,12 @@ class SignInForm extends React.Component {
         name="email"
         placeholder="Your zulip account's email address"
         onChange={this.onEmailChange}
-        initialValue={this.state.email}
       />
       <label htmlFor="API-key">API Key</label>
       <TextInput id="API-key" 
         name="API-key" 
         placeholder="Paste your API key here!" 
         onChange={this.onAPIKeyChange} 
-        initialValue={this.state.apiKey}
       />
       <button>Sign In!</button>
     </form>;
