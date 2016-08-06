@@ -1,4 +1,5 @@
 import React from 'react';
+import TextInput from './TextInput.jsx';
 
 class SignInForm extends React.Component {
   constructor() {
@@ -12,31 +13,31 @@ class SignInForm extends React.Component {
     console.log(this.state.apiKey);
   }
 
-  onEmailChange(e) {
-    this.setState({email: e.target.value});
+  onEmailChange(value) {
+    this.setState({email: value});
   }
 
-  onAPIKeyChange(e) {
-    this.setState({apiKey: e.target.value});
+  onAPIKeyChange(value) {
+    this.setState({apiKey: value});
   }
 
   render() {
     return <form onSubmit={this.login}>
-    <label htmlFor="email">Email address</label>
-    <input id="email"
-      name="email"
-      placeholder="Your zulip account's email address"
-      onChange={this.onEmailChange}
-      value={this.state.email}>
-    </input>
-    <label htmlFor="API-key">API Key</label>
-    <input id="API-key" 
-      name="API-key" 
-      placeholder="Paste your API key here!" 
-      onChange={this.onAPIKeyChange} 
-      value={this.state.apiKey}>
-    </input>
-    <button>Sign In!</button>
+      <label htmlFor="email">Email address</label>
+      <TextInput id="email"
+        name="email"
+        placeholder="Your zulip account's email address"
+        onChange={this.onEmailChange}
+        initialValue={this.state.email}
+      />
+      <label htmlFor="API-key">API Key</label>
+      <TextInput id="API-key" 
+        name="API-key" 
+        placeholder="Paste your API key here!" 
+        onChange={this.onAPIKeyChange} 
+        initialValue={this.state.apiKey}
+      />
+      <button>Sign In!</button>
     </form>;
   }
 }
