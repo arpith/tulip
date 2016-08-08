@@ -10,8 +10,10 @@ class SignInForm extends React.Component {
 
   login(e) {
     e.preventDefault();
-    console.log(this.state.email);
-    console.log(this.state.apiKey);
+    localStorage.email = this.state.email;
+    localStorage.apiKey = this.state.apiKey;
+    console.log(localStorage.email);
+    console.log(localStorage.apiKey);
   }
 
   onEmailChange(e) {
