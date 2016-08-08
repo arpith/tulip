@@ -1,13 +1,14 @@
 import React from 'react';
 
-class TextInput extends React.Component {
+class Button extends React.Component {
   render() {
     const style = {
       WebkitAppearance: 'none',
       fontFamily: 'inherit',
       background: 'white',
-      color: '#4A525A',
-      borderColor: '#D1D0CE',
+      background: '#4A525A',
+      borderColor: '#4A525A',
+      color: 'white',
       fontWeight: '300',
       border: 'thin solid',
       fontSize: '0.8em',
@@ -15,16 +16,12 @@ class TextInput extends React.Component {
       paddingLeft: '0.4em',
       paddingRight: '0.4em',
       marginRight: '0.1em',
-      borderRadius: '0.2em'
+      borderRadius: '0.2em',
+      cursor: 'pointer'
     };
-    return <input id={this.props.id}
-      name={this.props.name}
-      placeholder={this.props.placeholder}
-      onChange={this.props.onChange}
-      style={style}
-      type="text"
-    />;
+ 
+    return <button style={style}>{this.props.value}</button>;
   }
 }
 
-export default TextInput;
+export default Button;

@@ -1,5 +1,6 @@
 import React from 'react';
 import TextInput from './TextInput.jsx';
+import Button from './Button.jsx';
 
 class SignInForm extends React.Component {
   constructor() {
@@ -35,7 +36,7 @@ class SignInForm extends React.Component {
         placeholder="Paste your API key here!" 
         onChange={this.onAPIKeyChange} 
       />
-      <button>Sign In!</button>
+      <Button value="Sign In!" />
     </form>;
   }
 }
