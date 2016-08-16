@@ -1,37 +1,35 @@
+'use strict';
+
 require('throng')(function() {
   require('babel-core/register');
-  var React = require('react');
-  var ReactDOMServer = require('react-dom/server');
-  var ReactRouter = require('react-router');
-  var koa = require('koa');
-  var render = require('koa-ejs');
-  var serve = require('koa-static');
-  var path = require('path');
-  var RouterContext = require('./RouterContext');
-  var routes = require('./routes').default;
-  var app = koa();
+  const React = require('react');
+  const ReactDOMServer = require('react-dom/server');
+  const ReactRouter = require('react-router');
+  const RouterContext = require('./RouterContext');
+  const routes = require('./routes').default;
+  const express = require('express');
+  const app = express();
 
-  render(app, {root: path.join(__dirname, 'view')});
+  app.use(express.static('public'));
 
-  app.use(serve('public'));
+  app.set('view engine', 'ejs');
 
-  app.use(function *() {
-    var reactString;
-    ReactRouter.match({ routes: routes, location: this.url }, (error, redirectLocation, renderProps) => {
+  app.get('*', (req, res) => {
+    ReactRouter.match({ routes: routes, location: req.url }, (error, redirectLocation, renderProps) => {
       if (error) {
-        this.throw(error.message, 500);
+        res.status(500).send({error: error.message});
       } else if (redirectLocation) {
-        this.redirect(redirectLocation.pathname + redirectLocation.search);
+        res.redirect(redirectLocation.pathname + redirectLocation.search);
       } else if (renderProps) {
-        reactString = ReactDOMServer.renderToString(RouterContext(renderProps));
+        const reactString = ReactDOMServer.renderToString(RouterContext(renderProps));
+        res.render('layout', {react: reactString});
       } else {
-        this.throw('Not Found', 404);
+        res.status(404).send('Not Found');
       }
     });
-    yield this.render('layout', {react: reactString});
   });
 
-  var port = process.env.PORT || 3000;
+  const port = process.env.PORT || 3000;
   console.log("Starting up on port " + port);
   app.listen(port);
 
