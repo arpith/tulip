@@ -9,6 +9,7 @@ require('throng')(function() {
   const routes = require('./routes').default;
   const express = require('express');
   const cookieParser = require('cookie-parser');
+  const reactCookie = require('react-cookie');
 
   const app = express();
   app.use(cookieParser());
@@ -16,6 +17,7 @@ require('throng')(function() {
   app.set('view engine', 'ejs');
 
   app.get('*', (req, res) => {
+    const unplug = reactCookie.plugToRequest(req, res);
     ReactRouter.match({ routes: routes, location: req.url }, (error, redirectLocation, renderProps) => {
       if (error) {
         res.status(500).send({error: error.message});
@@ -27,6 +29,7 @@ require('throng')(function() {
       } else {
         res.status(404).send('Not Found');
       }
+      unplug();
     });
   });
 
