@@ -31,6 +31,14 @@ Experimental Zulip client built with React
 - [ ] Pulling profile images from RC API
 - [ ] Some way to go to a user's RC profile
 
+## Editor
+- [ ] draft.js
+- [ ] markdown
+- [ ] syntax highlighting
+- [ ] emojis
+- [ ] gifs
+- [ ] [mobotron](https://morbotron.com/)
+- [ ] [frinkiac](https://frinkiac.com/)
 
 ## Search
 - [ ] Filter all three panels
