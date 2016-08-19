@@ -1,6 +1,7 @@
 import React from 'react';
 import TextInput from './TextInput.jsx';
 import Button from './Button.jsx';
+import cookie from 'react-cookie';
 
 class SignInForm extends React.Component {
   constructor() {
@@ -10,10 +11,8 @@ class SignInForm extends React.Component {
 
   login(e) {
     e.preventDefault();
-    localStorage.email = this.state.email;
-    localStorage.apiKey = this.state.apiKey;
-    console.log(localStorage.email);
-    console.log(localStorage.apiKey);
+    cookie.save('email', this.state.email, { path: '/' });
+    cookie.save('apiKey', this.state.apiKey, { path: '/' });
   }
 
   onEmailChange(e) {
