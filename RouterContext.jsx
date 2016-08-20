@@ -1,4 +1,3 @@
-var React = require('react');
-var ReactDOMServer = require('react-dom/server');
-var RoutingContext = require('react-router').RoutingContext;
-module.exports = (renderProps) => <RoutingContext {...renderProps} />;
+import React from 'react';
+import {RouterContext} from 'react-router';
+module.exports = (renderProps) => <RouterContext {...renderProps} />;
