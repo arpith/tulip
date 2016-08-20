@@ -1,5 +1,6 @@
 import React from 'react';
 import TextInput from './TextInput.jsx';
+import Label from './Label.jsx';
 import Button from './Button.jsx';
 import cookie from 'react-cookie';
 
@@ -7,6 +8,8 @@ class SignInForm extends React.Component {
   constructor() {
     super();
     this.state = {apiKey: '', email: ''};
+    this.onEmailChange = (e) => this.setState({email: e.target.value});
+    this.onAPIKeyChange = (e) => this.setState({apiKey: e.target.value});
   }
 
   login(e) {
@@ -15,27 +18,25 @@ class SignInForm extends React.Component {
     cookie.save('apiKey', this.state.apiKey, { path: '/' });
   }
 
-  onEmailChange(e) {
-    this.setState({email: e.target.value});
-  }
-
-  onAPIKeyChange(e) {
-    this.setState({apiKey: e.target.value});
-  }
-
   render() {
-    return <form onSubmit={this.login}>
-      <label htmlFor="email">Email address</label>
+    const style = {
+      float: 'left',
+      clear: 'both'
+    };
+    return <form onSubmit={this.login} style={style}>
+      <Label htmlFor="email" value="Email Address" />
       <TextInput id="email"
         name="email"
         placeholder="Your zulip account's email address"
         onChange={this.onEmailChange}
+        label="Email Address"
       />
-      <label htmlFor="API-key">API Key</label>
+      <Label htmlFor="API-key" value="API Key" />
       <TextInput id="API-key" 
         name="API-key" 
         placeholder="Paste your API key here!" 
         onChange={this.onAPIKeyChange} 
+        label="API Key"
       />
       <Button value="Sign In!" />
     </form>;

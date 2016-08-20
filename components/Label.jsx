@@ -5,26 +5,17 @@ class TextInput extends React.Component {
     const style = {
       WebkitAppearance: 'none',
       fontFamily: 'inherit',
-      background: 'white',
       color: '#4A525A',
-      borderColor: '#D1D0CE',
-      fontWeight: '300',
-      border: 'thin solid',
+      fontWeight: '200',
       fontSize: '0.8em',
       padding: '0.2em',
       paddingLeft: '0.4em',
       paddingRight: '0.4em',
       marginRight: '0.1em',
-      borderRadius: '0.2em',
-      float: 'left'
+      float: 'left',
+      clear: 'both',
     };
-    return <input id={this.props.id}
-      name={this.props.name}
-      placeholder={this.props.placeholder}
-      onChange={this.props.onChange}
-      style={style}
-      type="text"
-    />;
+    return <label htmlFor={this.props.htmlFor} style={style}>{this.props.value}</label>;
   }
 }
 

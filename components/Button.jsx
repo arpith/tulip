@@ -16,7 +16,9 @@ class Button extends React.Component {
       paddingRight: '0.4em',
       marginRight: '0.1em',
       borderRadius: '0.2em',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      float: 'left',
+      clear: 'both'
     };
  
     return <button style={style}>{this.props.value}</button>;
