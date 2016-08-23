@@ -1,4 +1,5 @@
 import React from 'react';
+import BackgroundImage from './BackgroundImage.jsx';
 import SignInForm from './SignInForm.jsx';
 
 class SignInPage extends React.Component {
@@ -8,6 +9,7 @@ class SignInPage extends React.Component {
       clear: 'left'
     };
     return <div>
+      <BackgroundImage />
       <h2>Welcome to Tulip!</h2>
       <SignInForm />
       <div style={style}>

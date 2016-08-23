@@ -1,3 +1,5 @@
+import React from 'react';
+
 class BackgroundImage extends React.Component {
   render() {
     const urls = [
