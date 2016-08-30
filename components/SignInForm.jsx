@@ -9,17 +9,17 @@ class SignInForm extends React.Component {
   constructor() {
     super();
     this.state = {username: '', password: '', realm: ''};
-    this.onEmailChange = (e) => this.setState({username: e.target.value});
+    this.onUsernameChange = (e) => this.setState({username: e.target.value});
     this.onPasswordChange = (e) => this.setState({password: e.target.value});
     this.onRealmChange = (e) => this.setState({realm: e.target.value});
   }
 
   login(e) {
     e.preventDefault();
-    cookie.save('email', this.state.email, { path: '/' });
+    cookie.save('username', this.state.username, { path: '/' });
     cookie.save('password', this.state.password, {path: '/'});
     cookie.save('realm', this.state.realm, {path: '/'});
-    zulip({user: this.state.email, password: this.state.password, realm: this.state.realm})
+    zulip({username: this.state.username, password: this.state.password, realm: this.state.realm})
       .then(zulip => cookie.save('apiKey', zulip.config.apiKey, { path: '/' }));
   }
 
@@ -29,12 +29,12 @@ class SignInForm extends React.Component {
     };
     return (
       <form onSubmit={this.login} style={style}>
-        <Label htmlFor="email" value="Email Address" />
-        <TextInput id="email"
-          name="email"
-          placeholder="Your zulip account's email address"
+        <Label htmlFor="username" value="Username" />
+        <TextInput id="username"
+          name="username"
+          placeholder="Your zulip username"
           onChange={this.onEmailChange}
-          label="Email Address"
+          label="Username"
         />
         <Label htmlFor="password" value="Password" />
         <TextInput id="password" 
