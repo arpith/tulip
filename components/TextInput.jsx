@@ -11,6 +11,7 @@ class TextInput extends React.Component {
       fontSize: '1em',
       background: 'none',
       padding: '0.2em',
+      margin: '0.2em',
       paddingLeft: '0.4em',
       paddingRight: '0.4em',
       marginRight: '0.1em',
