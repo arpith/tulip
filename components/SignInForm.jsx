@@ -1,9 +1,9 @@
 import React from 'react';
+import zulip from 'zulip-js';
 import TextInput from './TextInput.jsx';
 import Label from './Label.jsx';
 import Button from './Button.jsx';
 import cookie from 'react-cookie';
-import zulip from 'zulip-js';
 
 class SignInForm extends React.Component {
   constructor() {
