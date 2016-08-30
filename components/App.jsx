@@ -6,8 +6,8 @@ class App extends React.Component {
       float: 'left',
       clear: 'left',
       color: 'white',
-      fontWeight: '500',
-      fontFamily: 'Helvetica Neue, Helvetica, sans',
+      fontWeight: '400',
+      fontFamily: 'PT Sans, sans',
     };
  
     return (
