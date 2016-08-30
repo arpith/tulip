@@ -8,6 +8,7 @@ class App extends React.Component {
       color: 'white',
       fontWeight: '400',
       fontFamily: 'PT Sans, sans',
+      width: '100%'
     };
  
     return (

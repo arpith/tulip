@@ -6,9 +6,13 @@ import Subheading from './Subheading.jsx';
 
 class SignInPage extends React.Component {
   render() {
-    const style = {
+    const outerDivStyle = {
+      width: '50%',
+      minWidth: '350px',
+      margin: 'auto'
+    };
+    const innerDivStyle = {
       height: '80%',
-      margin: 'auto',
       padding: '2em',
       display: '-webkit-box',
       display: '-moz-box',
@@ -23,10 +27,12 @@ class SignInPage extends React.Component {
     return (
       <div>
         <BackgroundImage />
-        <div style={style}>
-          <Heading text='Welcome to Tulip' />
-          <Subheading text='An experimental Zulip client' />
-          <SignInForm />
+        <div style={outerDivStyle}>
+          <div style={innerDivStyle}>
+            <Heading text='Welcome to Tulip' />
+            <Subheading text='An experimental Zulip client' />
+            <SignInForm />
+          </div>
         </div>
       </div>
     );
