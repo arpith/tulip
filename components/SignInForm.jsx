@@ -3,19 +3,24 @@ import TextInput from './TextInput.jsx';
 import Label from './Label.jsx';
 import Button from './Button.jsx';
 import cookie from 'react-cookie';
+import zulip from 'zulip-js';
 
 class SignInForm extends React.Component {
   constructor() {
     super();
-    this.state = {apiKey: '', email: ''};
-    this.onEmailChange = (e) => this.setState({email: e.target.value});
-    this.onAPIKeyChange = (e) => this.setState({apiKey: e.target.value});
+    this.state = {username: '', password: '', realm: ''};
+    this.onEmailChange = (e) => this.setState({username: e.target.value});
+    this.onPasswordChange = (e) => this.setState({password: e.target.value});
+    this.onRealmChange = (e) => this.setState({realm: e.target.value});
   }
 
   login(e) {
     e.preventDefault();
     cookie.save('email', this.state.email, { path: '/' });
-    cookie.save('apiKey', this.state.apiKey, { path: '/' });
+    cookie.save('password', this.state.password, {path: '/'});
+    cookie.save('realm', this.state.realm, {path: '/'});
+    zulip({user: this.state.email, password: this.state.password, realm: this.state.realm})
+      .then(zulip => cookie.save('apiKey', zulip.config.apiKey, { path: '/' }));
   }
 
   render() {
@@ -23,23 +28,32 @@ class SignInForm extends React.Component {
       float: 'left',
       clear: 'both'
     };
-    return <form onSubmit={this.login} style={style}>
-      <Label htmlFor="email" value="Email Address" />
-      <TextInput id="email"
-        name="email"
-        placeholder="Your zulip account's email address"
-        onChange={this.onEmailChange}
-        label="Email Address"
-      />
-      <Label htmlFor="API-key" value="API Key" />
-      <TextInput id="API-key" 
-        name="API-key" 
-        placeholder="Paste your API key here!" 
-        onChange={this.onAPIKeyChange} 
-        label="API Key"
-      />
-      <Button value="Sign In!" />
-    </form>;
+    return (
+      <form onSubmit={this.login} style={style}>
+        <Label htmlFor="email" value="Email Address" />
+        <TextInput id="email"
+          name="email"
+          placeholder="Your zulip account's email address"
+          onChange={this.onEmailChange}
+          label="Email Address"
+        />
+        <Label htmlFor="password" value="Password" />
+        <TextInput id="password" 
+          name="password" 
+          placeholder="Your zulip password" 
+          onChange={this.onPasswordChange} 
+          label="Password"
+        />
+        <Label htmlFor="realm" value="Realm" />
+        <TextInput id="realm" 
+          name="realm" 
+          placeholder="Your zulip realm" 
+          onChange={this.onPasswordChange} 
+          label="Realm"
+        />
+        <Button value="Sign In!" />
+      </form>
+    );
   }
 }
 
