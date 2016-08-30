@@ -25,8 +25,7 @@ class SignInForm extends React.Component {
 
   render() {
     const style = {
-      float: 'left',
-      clear: 'both'
+      margin: 'auto'
     };
     return (
       <form onSubmit={this.login} style={style}>

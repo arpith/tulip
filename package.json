@@ -36,6 +36,6 @@
     "react-router": "^2.6.1",
     "throng": "^4.0.0",
     "webpack": "^1.13.2",
-    "zulip-js": "^1.0.1"
+    "zulip-js": "^1.0.3"
   }
 }

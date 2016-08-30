@@ -2,10 +2,17 @@ import React from 'react';
 
 class App extends React.Component {
   render() {
+    const style = {
+      float: 'left',
+      clear: 'left',
+      color: 'white',
+      fontWeight: '500',
+      fontFamily: 'Helvetica Neue, Helvetica, sans',
+    };
+ 
     return (
-      <div>
-      <h1>Tulip</h1>
-      {React.cloneElement(this.props.children)}
+      <div style={style}>
+        {React.cloneElement(this.props.children)}
       </div>
     );
   }
