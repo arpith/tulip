@@ -10,7 +10,11 @@ module.exports = {
     filename: 'main.js',
   },
   module: {
-    loaders: [{
+    loaders: [{ 
+      test: /\.json$/,
+      loader: "json-loader"
+    },
+    {
       exclude: /node_modules/,
       loader: 'babel-loader'
     }]
