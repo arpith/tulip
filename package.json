@@ -2,10 +2,10 @@
   "name": "tulip",
   "version": "0.0.1",
   "description": "Experimental Zulip app built using React",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
+    "start": "node server.js",
     "postinstall": "webpack -p"
   },
   "repository": {
