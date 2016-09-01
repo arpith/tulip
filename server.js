@@ -19,14 +19,14 @@ require('throng')(function() {
   app.set('view engine', 'ejs');
 
   app.get('*', (req, res) => {
+    const store = redux.createStore(reducers);
     const unplug = reactCookie.plugToRequest(req, res);
-    ReactRouter.match({ routes: routes, location: req.url }, (error, redirectLocation, renderProps) => {
+    ReactRouter.match({ routes: routes(store), location: req.url }, (error, redirectLocation, renderProps) => {
       if (error) {
         res.status(500).send({error: error.message});
       } else if (redirectLocation) {
         res.redirect(redirectLocation.pathname + redirectLocation.search);
       } else if (renderProps) {
-        const store = redux.createStore(reducers);
         const preloadedState = JSON.stringify(store.getState());
         const reactString = ReactDOMServer.renderToString(RouterContext(renderProps));
         res.render('layout', {react: reactString, preloadedState: preloadedState});

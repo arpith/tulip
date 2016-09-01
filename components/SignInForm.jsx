@@ -1,28 +1,32 @@
-import React from 'react';
-import zulip from 'zulip-js';
+import React, { PropTypes } from 'react';
 import TextInput from './TextInput.jsx';
 import Label from './Label.jsx';
 import Button from './Button.jsx';
-import cookie from 'react-cookie';
+import {signin} from '../actions';
 
 class SignInForm extends React.Component {
-  constructor() {
-    super();
+  static propTypes = {
+    location: PropTypes.object
+  };
+
+  static contextTypes = {
+    store: PropTypes.any,
+    history: PropTypes.object.isRequired
+  };
+
+  constructor(props, context) {
+    super(props, context);
     this.state = {username: '', password: '', realm: ''};
     this.onChange = (e) => this.setState({[e.target.name]: e.target.value});
+    this.login = this.login.bind(this);
   }
 
   login(e) {
     e.preventDefault();
-    const { history, store } = this.context
-    const { location } = this.props
     let nextPath = '/';
-    if (location.state && location.state.nextPathname) {
-      nextPath = location.state.nextPathname;
-    }
-
-    store.dispatch(actions.login(this.state, () => {
-      history.pushState({}, nextPath)
+    this.context.store.dispatch(signin(this.state, () => {
+      console.log("in the callback :)");
+      this.context.history.pushState({}, nextPath);
     }));
   }
 
