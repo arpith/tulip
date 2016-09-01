@@ -11,7 +11,7 @@ class SignInForm extends React.Component {
     this.state = {username: '', password: '', realm: ''};
     this.onUsernameChange = (e) => this.setState({username: e.target.value});
     this.onPasswordChange = (e) => this.setState({password: e.target.value});
-    this.onRealmChange = (e) => this.setState({realm: e.target.value});
+    this.onServerChange = (e) => this.setState({realm: e.target.value});
   }
 
   login(e) {
@@ -32,23 +32,26 @@ class SignInForm extends React.Component {
         <Label htmlFor="username" value="Username" />
         <TextInput id="username"
           name="username"
-          placeholder="Your zulip username"
+          placeholder="Chatty McChat"
           onChange={this.onEmailChange}
           label="Username"
+          type="email"
         />
         <Label htmlFor="password" value="Password" />
         <TextInput id="password" 
           name="password" 
-          placeholder="Your zulip password" 
+          placeholder="Miaow" 
           onChange={this.onPasswordChange} 
           label="Password"
+          type="password"
         />
-        <Label htmlFor="realm" value="Realm" />
-        <TextInput id="realm" 
-          name="realm" 
-          placeholder="Your zulip realm" 
-          onChange={this.onPasswordChange} 
-          label="Realm"
+        <Label htmlFor="server" value="Zulip Server" />
+        <TextInput id="server" 
+          name="server" 
+          placeholder="https://recurse.zulipchat.com" 
+          onChange={this.onServerChange} 
+          label="Zulip Server"
+          type="url"
         />
         <Button value="Sign In!" />
       </form>
