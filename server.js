@@ -6,10 +6,12 @@ require('throng')(function() {
   const ReactDOMServer = require('react-dom/server');
   const ReactRouter = require('react-router');
   const RouterContext = require('./RouterContext');
-  const routes = require('./routes').default;
   const express = require('express');
   const cookieParser = require('cookie-parser');
   const reactCookie = require('react-cookie');
+  const redux = require('redux');
+  const routes = require('./routes').default;
+  const reducers = require('./reducers').default;
 
   const app = express();
   app.use(cookieParser());
@@ -24,8 +26,10 @@ require('throng')(function() {
       } else if (redirectLocation) {
         res.redirect(redirectLocation.pathname + redirectLocation.search);
       } else if (renderProps) {
+        const store = redux.createStore(reducers);
+        const preloadedState = JSON.stringify(store.getState());
         const reactString = ReactDOMServer.renderToString(RouterContext(renderProps));
-        res.render('layout', {react: reactString});
+        res.render('layout', {react: reactString, preloadedState: preloadedState});
       } else {
         res.status(404).send('Not Found');
       }

@@ -9,18 +9,21 @@ class SignInForm extends React.Component {
   constructor() {
     super();
     this.state = {username: '', password: '', realm: ''};
-    this.onUsernameChange = (e) => this.setState({username: e.target.value});
-    this.onPasswordChange = (e) => this.setState({password: e.target.value});
-    this.onServerChange = (e) => this.setState({realm: e.target.value});
+    this.onChange = (e) => this.setState({[e.target.name]: e.target.value});
   }
 
   login(e) {
     e.preventDefault();
-    cookie.save('username', this.state.username, { path: '/' });
-    cookie.save('password', this.state.password, {path: '/'});
-    cookie.save('realm', this.state.realm, {path: '/'});
-    zulip({username: this.state.username, password: this.state.password, realm: this.state.realm})
-      .then(zulip => cookie.save('apiKey', zulip.config.apiKey, { path: '/' }));
+    const { history, store } = this.context
+    const { location } = this.props
+    let nextPath = '/';
+    if (location.state && location.state.nextPathname) {
+      nextPath = location.state.nextPathname;
+    }
+
+    store.dispatch(actions.login(this.state, () => {
+      history.pushState({}, nextPath)
+    }));
   }
 
   render() {
@@ -33,7 +36,7 @@ class SignInForm extends React.Component {
         <TextInput id="username"
           name="username"
           placeholder="Chatty McChat"
-          onChange={this.onEmailChange}
+          onChange={this.onChange}
           label="Username"
           type="email"
         />
@@ -41,15 +44,16 @@ class SignInForm extends React.Component {
         <TextInput id="password" 
           name="password" 
           placeholder="Miaow" 
-          onChange={this.onPasswordChange} 
+          onChange={this.onChange} 
           label="Password"
           type="password"
         />
         <Label htmlFor="server" value="Zulip Server" />
         <TextInput id="server" 
-          name="server" 
+          name="realm" 
           placeholder="https://recurse.zulipchat.com" 
-          onChange={this.onServerChange} 
+          defaultValue="https://recurse.zulipchat.com" 
+          onChange={this.onChange} 
           label="Zulip Server"
           type="url"
         />
