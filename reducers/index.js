@@ -8,14 +8,22 @@ const initialState = {
 };
 
 const actionHandlers = {
-  [SIGN_IN]: (state, action) => ({ config: action.config })
+  [SIGN_IN]: (state, action) => Object.assign({}, state, {
+    config: action.config
+  })
 };
 
 function createReducer (initialState, actionHandlers) {
   return (state = initialState, action) => {
     const reduceFn = actionHandlers[action.type];
-    if (!reduceFn) return state;
-    return { ...state, ...reduceFn(state, action) };
+    if (!reduceFn) {
+      return state;
+    } else {
+      return { 
+        ...state,
+        ...reduceFn(state, action) 
+      };
+    }
   };
 }
 
