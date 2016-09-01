@@ -9,7 +9,8 @@ class SignInPage extends React.Component {
     const outerDivStyle = {
       width: '50%',
       minWidth: '350px',
-      margin: 'auto'
+      margin: 'auto',
+      background: 'rgba(0,0,0,0.4)',
     };
     const innerDivStyle = {
       height: '80%',
