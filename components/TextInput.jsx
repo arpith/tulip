@@ -18,12 +18,14 @@ class TextInput extends React.Component {
       borderRadius: '0.2em',
       float: 'left'
     };
+    let type = this.props.type;
+    if (!type) type = "text";
     return <input id={this.props.id}
       name={this.props.name}
       placeholder={this.props.placeholder}
       onChange={this.props.onChange}
       style={style}
-      type="text"
+      type={type}
     />;
   }
 }
