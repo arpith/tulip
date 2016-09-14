@@ -5,13 +5,13 @@ require('throng')(function() {
   const React = require('react');
   const ReactDOMServer = require('react-dom/server');
   const ReactRouter = require('react-router');
-  const RouterContext = require('./RouterContext');
   const express = require('express');
   const cookieParser = require('cookie-parser');
   const reactCookie = require('react-cookie');
   const redux = require('redux');
-  const routes = require('./routes').default;
-  const reducers = require('./reducers').default;
+  const RouterContext = require('./app/RouterContext');
+  const routes = require('./app/routes').default;
+  const reducers = require('./app/reducers').default;
 
   const app = express();
   app.use(cookieParser());
@@ -21,7 +21,10 @@ require('throng')(function() {
   app.get('*', (req, res) => {
     const store = redux.createStore(reducers);
     const unplug = reactCookie.plugToRequest(req, res);
-    ReactRouter.match({ routes: routes(store), location: req.url }, (error, redirectLocation, renderProps) => {
+    ReactRouter.match({
+      routes: routes(store),
+      location: req.url
+    }, (error, redirectLocation, renderProps) => {
       if (error) {
         res.status(500).send({error: error.message});
       } else if (redirectLocation) {
@@ -40,5 +43,4 @@ require('throng')(function() {
   const port = process.env.PORT || 3000;
   console.log("Starting up on port " + port);
   app.listen(port);
-
 });
