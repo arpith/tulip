@@ -1,9 +1,9 @@
 import React from 'react';
-import SignInPage from './SignInPage.jsx';
+import Streams from './Streams.jsx';
 
 class HomePage extends React.Component {
   render() {
-    return <SignInPage />;
+    return <Streams />;
   }
 }
 

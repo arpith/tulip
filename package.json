@@ -41,6 +41,6 @@
     "redux-thunk": "^2.1.0",
     "throng": "^4.0.0",
     "webpack": "^1.13.2",
-    "zulip-js": "^1.0.5"
+    "zulip-js": "^1.0.6"
   }
 }
