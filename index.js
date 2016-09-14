@@ -9,9 +9,9 @@ require('throng')(function() {
   const cookieParser = require('cookie-parser');
   const reactCookie = require('react-cookie');
   const redux = require('redux');
-  const RouterContext = require('./app/RouterContext');
+  const RouterContext = require('./app/RouterContext').default;
   const routes = require('./app/routes').default;
-  const reducers = require('./app/reducers').default;
+  const reducers = require('./app/reducers');
 
   const app = express();
   app.use(cookieParser());
@@ -19,7 +19,7 @@ require('throng')(function() {
   app.set('view engine', 'ejs');
 
   app.get('*', (req, res) => {
-    const store = redux.createStore(reducers);
+    const store = redux.createStore(redux.combineReducers(reducers));
     const unplug = reactCookie.plugToRequest(req, res);
     ReactRouter.match({
       routes: routes(store),
