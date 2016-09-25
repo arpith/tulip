@@ -1,9 +1,15 @@
 import React from 'react';
 import Streams from './Streams.jsx';
+import Messages from './Messages.jsx';
 
 class HomePage extends React.Component {
   render() {
-    return <Streams />;
+    return (
+      <div>
+        <Streams />
+        <Messages />
+      </div>
+    );
   }
 }
 
