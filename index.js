@@ -1,22 +1,22 @@
 require('babel-core/register');
 const throng = require('throng');
+const express = require('express');
 const ReactDOMServer = require('react-dom/server');
 const ReactRouter = require('react-router');
-const express = require('express');
 const cookieParser = require('cookie-parser');
 const reactCookie = require('react-cookie');
 const redux = require('redux');
 const routerContext = require('./app/RouterContext').default;
-const routes = require('./app/routes.jsx').default;
+const routes = require('./app/routes').default;
 const reducers = require('./app/reducers');
 
 throng(() => {
-  const app = express();
-  app.use(cookieParser());
-  app.use(express.static('public'));
-  app.set('view engine', 'ejs');
+  const server = express();
+  server.use(cookieParser());
+  server.use(express.static('public'));
+  server.set('view engine', 'ejs');
 
-  app.get('*', (req, res) => {
+  server.get('*', (req, res) => {
     const store = redux.createStore(redux.combineReducers(reducers));
     const unplug = reactCookie.plugToRequest(req, res);
     ReactRouter.match({
@@ -37,8 +37,7 @@ throng(() => {
       unplug();
     });
   });
-
   const port = process.env.PORT || 3000;
   console.log('Starting up on port', port);
-  app.listen(port);
+  server.listen(port);
 });
