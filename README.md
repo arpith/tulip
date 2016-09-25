@@ -1,4 +1,4 @@
-# tulip
+# tulip [![Build Status](https://travis-ci.org/arpith/tulip.svg?branch=master)](https://travis-ci.org/arpith/tulip)
 Experimental Zulip client built with React
 
 ## Heroku
