@@ -4,7 +4,7 @@ const initialState = {
   config: {},
   streams: [],
   messages: [],
-  users: []
+  users: [],
 };
 
 export function config(state, action) {
@@ -13,7 +13,7 @@ export function config(state, action) {
       return action.config;
     default:
       if (!state) return initialState.config;
-      else return state;
+      return state;
   }
 }
 
@@ -23,7 +23,7 @@ export function streams(state, action) {
       return action.streams;
     default:
       if (!state) return initialState.streams;
-      else return state;
+      return state;
   }
 }
 
@@ -33,16 +33,16 @@ export function messages(state, action) {
       return action.messages;
     default:
       if (!state) return initialState.messages;
-      else return state;
+      return state;
   }
 }
 
 export function users(state, action) {
   switch (action.type) {
     case UPDATE_USERS:
-      return actions.users;
+      return action.users;
     default:
       if (!state) return initialState.users;
-      else return state;
+      return state;
   }
 }

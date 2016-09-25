@@ -4,7 +4,8 @@
   "description": "Experimental Zulip app built using React",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint app index.js",
+    "test": "npm run lint",
     "start": "node index.js",
     "postinstall": "webpack -p"
   },
@@ -42,5 +43,12 @@
     "throng": "^4.0.0",
     "webpack": "^1.13.2",
     "zulip-js": "^1.0.6"
+  },
+  "devDependencies": {
+    "eslint": "^3.5.0",
+    "eslint-config-airbnb": "^11.1.0",
+    "eslint-plugin-import": "^1.15.0",
+    "eslint-plugin-jsx-a11y": "^2.2.2",
+    "eslint-plugin-react": "^6.2.0"
   }
 }

@@ -1,18 +1,16 @@
-'use strict';
+require('babel-core/register');
+const throng = require('throng');
+const ReactDOMServer = require('react-dom/server');
+const ReactRouter = require('react-router');
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const reactCookie = require('react-cookie');
+const redux = require('redux');
+const routerContext = require('./app/RouterContext').default;
+const routes = require('./app/routes.jsx').default;
+const reducers = require('./app/reducers');
 
-require('throng')(function() {
-  require('babel-core/register');
-  const React = require('react');
-  const ReactDOMServer = require('react-dom/server');
-  const ReactRouter = require('react-router');
-  const express = require('express');
-  const cookieParser = require('cookie-parser');
-  const reactCookie = require('react-cookie');
-  const redux = require('redux');
-  const RouterContext = require('./app/RouterContext').default;
-  const routes = require('./app/routes').default;
-  const reducers = require('./app/reducers');
-
+throng(() => {
   const app = express();
   app.use(cookieParser());
   app.use(express.static('public'));
@@ -23,16 +21,16 @@ require('throng')(function() {
     const unplug = reactCookie.plugToRequest(req, res);
     ReactRouter.match({
       routes: routes(store),
-      location: req.url
+      location: req.url,
     }, (error, redirectLocation, renderProps) => {
       if (error) {
-        res.status(500).send({error: error.message});
+        res.status(500).send({ error: error.message });
       } else if (redirectLocation) {
         res.redirect(redirectLocation.pathname + redirectLocation.search);
       } else if (renderProps) {
         const preloadedState = JSON.stringify(store.getState());
-        const reactString = ReactDOMServer.renderToString(RouterContext(renderProps));
-        res.render('layout', {react: reactString, preloadedState: preloadedState});
+        const reactString = ReactDOMServer.renderToString(routerContext(renderProps));
+        res.render('layout', { react: reactString, preloadedState });
       } else {
         res.status(404).send('Not Found');
       }
@@ -41,6 +39,6 @@ require('throng')(function() {
   });
 
   const port = process.env.PORT || 3000;
-  console.log("Starting up on port " + port);
+  console.log('Starting up on port', port);
   app.listen(port);
 });

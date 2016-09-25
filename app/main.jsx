@@ -2,14 +2,14 @@ import React from 'react';
 import thunk from 'redux-thunk';
 import { render } from 'react-dom';
 import { Router, browserHistory } from 'react-router';
-import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux';
-import routes from './routes';
+import routes from './routes.jsx';
 import * as reducers from './reducers';
 
-const mountNode = document.getElementById("react-mount");
-const preloadedState = window.__PRELOADED_STATE__;
+const mountNode = document.getElementById('react-mount');
+const preloadedState = window.reduxPreloadedState;
 
 const middleware = applyMiddleware(
   routerMiddleware(browserHistory),
@@ -18,7 +18,7 @@ const middleware = applyMiddleware(
 
 const reducer = combineReducers({
   ...reducers,
-  routing: routerReducer
+  routing: routerReducer,
 });
 
 const store = createStore(reducer, preloadedState, middleware);

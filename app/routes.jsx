@@ -11,9 +11,9 @@ function routes(store) {
   }
 
   return (
-    <Route path='/' component={App}>
-      <IndexRoute component={HomePage} onEnter={requireAuth}/>
-      <Route path='/login' component={SignInPage} />
+    <Route path="/" component={App}>
+      <IndexRoute component={HomePage} onEnter={requireAuth} />
+      <Route path="/login" component={SignInPage} />
     </Route>
   );
 }
