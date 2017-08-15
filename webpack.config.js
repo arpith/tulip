@@ -5,6 +5,9 @@ module.exports = {
   entry: [
     './app/main.jsx'
   ],
+  node: {
+      fs: 'empty'
+  },
   output: {
     path: path.join(__dirname, 'public'),
     filename: 'main.js',
