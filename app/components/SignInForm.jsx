@@ -25,7 +25,6 @@ class SignInForm extends React.Component {
     e.preventDefault();
     let nextPath = '/';
     this.context.store.dispatch(signin(this.state, () => {
-      console.log("in the callback :)");
       this.context.history.pushState({}, nextPath);
     }));
   }
@@ -61,7 +60,7 @@ class SignInForm extends React.Component {
           label="Zulip Server"
           type="url"
         />
-        <Button value="Sign In!" />
+        <Button value="Sign In!" onclick={this.login} />
       </form>
     );
   }

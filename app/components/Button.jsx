@@ -20,7 +20,9 @@ class Button extends React.Component {
       clear: 'both'
     };
  
-    return <button style={style}>{this.props.value}</button>;
+    return <button style={style} onclick={this.props.onclick}>
+      {this.props.value}
+    </button>;
   }
 }
 

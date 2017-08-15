@@ -1,14 +1,35 @@
 import zulip from 'zulip-js';
-import { SIGN_IN, UPDATE_STREAMS } from '../constants.js';
+import { SIGN_IN, UPDATE_STREAMS, UPDATE_MESSAGES } from '../constants.js';
 
 export function fetchStreams(redirect) {
   return (dispatch, getState) => {
     const config = getState().config;
     const z = zulip(config);
-    z.streams.retrieve().then((res) => {
+    return z.streams.retrieve().then((res) => {
       dispatch({
         type: UPDATE_STREAMS,
         streams: res.streams,
+      });
+      if (redirect) redirect();
+    });
+  };
+}
+
+export function fetchMessages(redirect) {
+  return (dispatch, getState) => {
+    const config = getState().config;
+    const z = zulip(config);
+    const params = {
+      num_before: 10,
+      num_after: 10,
+    };
+    return z.users.me.pointer.retrieve().then((res) => {
+      params.anchor = res.pointer;
+      return z.messages.retrieve(params);
+    }).then((res) => {
+      dispatch({
+        type: UPDATE_MESSAGES,
+        messages: res.messages,
       });
       if (redirect) redirect();
     });
@@ -22,7 +43,9 @@ export function signin(config, redirect) {
         type: SIGN_IN,
         config: client.config,
       });
-      fetchStreams(redirect)(dispatch, getState);
+      fetchMessages()(dispatch, getState);
+      fetchStreams()(dispatch, getState);
+      if (redirect) redirect();
     });
   };
 }
