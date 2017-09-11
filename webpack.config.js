@@ -5,8 +5,8 @@ module.exports = {
   entry: [
     './app/main.jsx'
   ],
-  node: {
-      fs: 'empty'
+  externals: {
+    'graceful-fs': '{}'
   },
   output: {
     path: path.join(__dirname, 'public'),
