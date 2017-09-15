@@ -3,8 +3,6 @@ import React from 'react';
 class Heading extends React.Component {
   render() {
     const style = {
-      fontFamily: 'PT Sans, sans',
-      fontWeight: '700',
       fontSize: '3em',
       lineHeight: '1.2em'
     };

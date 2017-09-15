@@ -31,14 +31,16 @@ class SignInForm extends React.Component {
 
   render() {
     const style = {
-      margin: 'auto'
+      margin: 'auto',
+      marginTop: '1.6em',
+      marginBottom: '10em'
     };
     return (
       <form onSubmit={this.login} style={style}>
         <Label htmlFor="username" value="Username" />
         <TextInput id="username"
           name="username"
-          placeholder="Chatty McChat"
+          placeholder="Username"
           onChange={this.onChange}
           label="Username"
           type="email"
@@ -46,7 +48,7 @@ class SignInForm extends React.Component {
         <Label htmlFor="password" value="Password" />
         <TextInput id="password" 
           name="password" 
-          placeholder="Miaow" 
+          placeholder="Password" 
           onChange={this.onChange} 
           label="Password"
           type="password"
@@ -60,7 +62,7 @@ class SignInForm extends React.Component {
           label="Zulip Server"
           type="url"
         />
-        <Button value="Sign In!" onclick={this.login} />
+        <Button value="Sign In" onclick={this.login} />
       </form>
     );
   }

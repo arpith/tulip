@@ -6,7 +6,7 @@ class TextInput extends React.Component {
       WebkitAppearance: 'none',
       fontFamily: 'inherit',
       fontWeight: '300',
-      border: 'thin solid white',
+      border: 'thin solid #D6D5D5',
       color: 'white',
       fontSize: '1em',
       background: 'none',

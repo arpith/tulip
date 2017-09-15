@@ -9,7 +9,7 @@ class TextInput extends React.Component {
       padding: '0.2em',
       paddingLeft: '0.4em',
       paddingRight: '0.4em',
-      marginLeft: '-8em',
+      marginLeft: '-7em',
       float: 'left',
       clear: 'both',
     };
