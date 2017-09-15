@@ -1,16 +1,9 @@
 import React from 'react';
 
-class Avatar extends React.Component {
-  render() {
-    const style = {
-      borderRadius: '50%',
-      alignSelf: 'center'
-    };
-    return <img
-      style={style}
-      src={this.props.url}>
-    </img>;
-  }
-}
+const style = {
+  borderRadius: '50%',
+  alignSelf: 'flex-start',
+  marginRight: '2em'
+};
 
-export default Avatar;
+export default ({ url }) => <img style={style} src={url} />;
