@@ -15,7 +15,7 @@ body {
   margin: 0;
   padding-top:0.8em;
   line-height:1.6em;
-  font-family:'-apple-system','Helvetica Neue',helvetica,sans;
+  font-family:-apple-system,system-ui,BlinkMacSystemFont,'Helvetica Neue',helvetica,sans;
   text-rendering:optimizeLegibility;
   color:#4A525A;
 }
