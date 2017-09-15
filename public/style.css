@@ -1,29 +1,29 @@
 @media all and (min-device-width:320px) {
-  body {font-size: 19px!important;}
-  h1 {font-size: 24px!important;}
+  body {font-size: 19px;}
+  h1 {font-size: 24px;}
 }
 @media all and (min-device-width:768px) {
-  body {font-size: 19px!important;}
-  h1 {font-size: 26px!important;}
+  body {font-size: 19px;}
+  h1 {font-size: 26px;}
 }
 @media all and (min-device-width:1024px) {
-  body {font-size: 21px!important;}
-  h1 {font-size: 28px!important;}
+  body {font-size: 21px;}
+  h1 {font-size: 28px;}
 }
 body {
   padding: 0;
   margin: 0;
-  padding-top:0.8em!important;
-  line-height:1.4em!important;
-  font-family:'-apple-system','Helvetica Neue',helvetica,sans!important;
-  text-rendering:optimizeLegibility!important;
-  color:#4A525A!important;
+  padding-top:0.8em;
+  line-height:1.4em;
+  font-family:'-apple-system','Helvetica Neue',helvetica,sans;
+  text-rendering:optimizeLegibility;
+  color:#4A525A;
 }
 a {
-  text-decoration: none!important;
-  color: #157DEC!important;
-  border-bottom: thin solid!important;
-  border-bottom-color: #157DEC!important;
+  text-decoration: none;
+  color: #157DEC;
+  border-bottom: thin solid;
+  border-bottom-color: #157DEC;
 }
 ::-webkit-input-placeholder {
    color: white;
