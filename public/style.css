@@ -25,6 +25,9 @@ a {
   border-bottom: thin solid;
   border-bottom-color: #157DEC;
 }
+p {
+  margin-top: 0;
+}
 ::-webkit-input-placeholder {
    color: white;
 }
