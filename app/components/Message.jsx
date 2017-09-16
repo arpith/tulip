@@ -8,7 +8,8 @@ class Message extends React.Component {
     const markedupContent = {__html: this.props.message.content};
     const style = {
       display: 'flex',
-      flexDirection: 'row'
+      flexDirection: 'row',
+      marginBottom: '1.6em'
     };
     return (
       <div style={style}>
