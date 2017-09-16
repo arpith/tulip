@@ -1,10 +1,10 @@
 @media all and (min-device-width:320px) {
-  body {font-size: 19px;}
-  h1 {font-size: 24px;}
+  body {font-size: 17px;}
+  h1 {font-size: 19px;}
 }
 @media all and (min-device-width:768px) {
-  body {font-size: 19px;}
-  h1 {font-size: 26px;}
+  body {font-size: 17px;}
+  h1 {font-size: 19px;}
 }
 @media all and (min-device-width:1024px) {
   body {font-size: 17px;}
