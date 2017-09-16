@@ -5,7 +5,7 @@ import Message from './Message';
 function Messages({ messages }) {
   const message = (m) => <Message message={m} key={m.id} />;
   const style = {
-    flex: 2
+    flex: 3
   };
   return (
     <div style={style}>
