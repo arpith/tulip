@@ -1,7 +1,7 @@
 import React from 'react';
-import moment from 'moment';
 import Avatar from './Avatar';
 import Sender from './Sender';
+import Timestamp from './Timestamp';
 
 class Message extends React.Component {
   render() {
@@ -14,8 +14,10 @@ class Message extends React.Component {
       <div style={style}>
         <Avatar url={this.props.message.avatar_url} />
         <div>
-          <Sender name={this.props.message.sender_full_name} />
-          <div>{moment(this.props.message.timestamp, 'X').fromNow()}</div>
+          <div>
+            <Sender name={this.props.message.sender_full_name} />
+            <Timestamp timestamp={this.props.message.timestamp} />
+          </div>
           <div dangerouslySetInnerHTML={markedupContent} />
         </div>
       </div>
