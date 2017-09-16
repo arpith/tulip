@@ -14,7 +14,10 @@ class Message extends React.Component {
       <div style={style}>
         <Avatar url={this.props.message.avatar_url} />
         <div>
-          <div>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'row'
+          }}>
             <Sender name={this.props.message.sender_full_name} />
             <Timestamp timestamp={this.props.message.timestamp} />
           </div>
