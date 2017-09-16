@@ -1,5 +1,10 @@
 import zulip from 'zulip-js';
-import { SIGN_IN, UPDATE_STREAMS, UPDATE_MESSAGES } from '../constants.js';
+import {
+  SIGN_IN,
+  UPDATE_STREAMS,
+  UPDATE_MESSAGES,
+  UPDATE_USERS,
+} from '../constants.js';
 
 export function fetchStreams(redirect) {
   return (dispatch, getState) => {
@@ -36,6 +41,21 @@ export function fetchMessages(redirect) {
   };
 }
 
+export function fetchUsers(redirect) {
+  return (dispatch, getState) => {
+    const config = getState().config;
+    const z = zulip(config);
+    return z.users.retrieve({}).then((res) => {
+      const users = [].concat(res.members);
+      dispatch({
+        type: UPDATE_USERS,
+        users,
+      });
+      if (redirect) redirect();
+    });
+  };
+}
+
 export function signin(config, redirect) {
   return (dispatch, getState) => {
     zulip(config).then((client) => {
@@ -45,6 +65,7 @@ export function signin(config, redirect) {
       });
       fetchMessages()(dispatch, getState);
       fetchStreams()(dispatch, getState);
+      fetchUsers()(dispatch, getState);
       if (redirect) redirect();
     });
   };

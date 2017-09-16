@@ -1,6 +1,7 @@
 import React from 'react';
 import Streams from './Streams.jsx';
 import Messages from './Messages.jsx';
+import Users from './Users.jsx';
 
 class HomePage extends React.Component {
   render() {
@@ -9,6 +10,7 @@ class HomePage extends React.Component {
       <div style={style}>
         <Streams />
         <Messages />
+        <Users />
       </div>
     );
   }
