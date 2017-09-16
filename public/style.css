@@ -28,6 +28,9 @@ a {
 p {
   margin: 0;
 }
+.emoji {
+  height: 1.2em;
+}
 ::-webkit-input-placeholder {
    color: white;
 }
