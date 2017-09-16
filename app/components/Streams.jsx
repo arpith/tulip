@@ -4,7 +4,11 @@ import { connect } from 'react-redux';
 function Streams({ streams }) {
   const style = {
     paddingLeft: '1.6em',
-    flex: 1
+    paddingRight: '0.8em',
+    marginRight: '0.8em',
+    flex: 1,
+    height: '100%',
+    overflowX: 'scroll'
   };
   const stream = (s) => <div key={s.stream_id}>{s.name}</div>;
   return <div style={style}>{streams.map(stream)}</div>;

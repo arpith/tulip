@@ -3,13 +3,10 @@ import { connect } from 'react-redux';
 
 function Users({ users }) {
   const style = {
-    display: 'flex',
-    flexDirection: 'column',
-    top: 0,
-    right: 0,
-    paddingLeft: '1.6em',
     flex: 1,
     height: '100%',
+    paddingRight: '0.8em',
+    marginRight: '0.8em',
     overflowY: 'scroll'
   };
   const user = (u) => <div key={u.email}>{u.full_name}</div>;
