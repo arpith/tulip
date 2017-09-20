@@ -1,14 +1,17 @@
 @media all and (min-device-width:320px) {
   body {font-size: 17px;}
-  h1 {font-size: 19px;}
+  h1 {font-size: 32px;}
+  h2 {font-size: 24px;}
 }
 @media all and (min-device-width:768px) {
   body {font-size: 17px;}
-  h1 {font-size: 19px;}
+  h1 {font-size: 36px;}
+  h2 {font-size: 26px;}
 }
 @media all and (min-device-width:1024px) {
   body {font-size: 17px;}
-  h1 {font-size: 19px;}
+  h1 {font-size: 42px;}
+  h2 {font-size: 26px;}
 }
 body {
   padding: 0;

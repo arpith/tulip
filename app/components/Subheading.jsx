@@ -1,17 +1,11 @@
 import React from 'react';
 
-class Subheading extends React.Component {
-  render() {
-    const style = {
-      fontSize: '1.5em',
-      lineHeight: '1em',
-    };
-    return (
-      <div style={style}>
-        {this.props.text}
-      </div>
-    );
-  }
-}
+const style = {
+  lineHeight: '1em',
+  fontWeight: 'normal',
+  margin: 0
+};
 
-export default Subheading;
+export default ({text}) => <h2 style={style}>
+  {text}
+</h2>;
