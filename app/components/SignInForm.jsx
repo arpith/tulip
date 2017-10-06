@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
-import TextInput from './TextInput.jsx';
-import Label from './Label.jsx';
+import TextInput from './TextInput';
+import Label from './Label';
+import LabelledTextInput from './LabelledTextInput';
 import Button from './Button.jsx';
 import {signin} from '../actions';
 
@@ -31,35 +32,35 @@ class SignInForm extends React.Component {
 
   render() {
     const style = {
-      margin: 'auto',
       marginTop: '1.6em',
-      marginBottom: '10em'
+      marginBottom: '10em',
+      display: 'flex',
+      flexDirection: 'column',
+      maxWidth: '90%'
     };
     return (
-      <form onSubmit={this.login} style={style}>
-        <Label htmlFor="username" value="Username" />
-        <TextInput id="username"
+        <form onSubmit={this.login} style={style}>
+
+        <LabelledTextInput
+          labelValue="Username"
           name="username"
           placeholder="Username"
           onChange={this.onChange}
-          label="Username"
           type="email"
         />
-        <Label htmlFor="password" value="Password" />
-        <TextInput id="password" 
-          name="password" 
-          placeholder="Password" 
-          onChange={this.onChange} 
-          label="Password"
+        <LabelledTextInput
+          labelValue="Password"
+          name="password"
+          placeholder="Password"
+          onChange={this.onChange}
           type="password"
         />
-        <Label htmlFor="server" value="Zulip Server" />
-        <TextInput id="server" 
-          name="realm" 
-          placeholder="https://recurse.zulipchat.com" 
-          defaultValue="https://recurse.zulipchat.com" 
-          onChange={this.onChange} 
-          label="Zulip Server"
+        <LabelledTextInput
+          labelValue="Zulip Server"
+          name="realm"
+          placeholder="https://recurse.zulipchat.com"
+          defaultValue="https://recurse.zulipchat.com"
+          onChange={this.onChange}
           type="url"
         />
         <Button value="Sign In" onclick={this.login} />
