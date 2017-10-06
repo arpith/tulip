@@ -5,6 +5,7 @@ class TextInput extends React.Component {
     const base = this.props.size || 1;
     const size = (ratio=1) => base *  ratio + 'em';
     const style = {
+      height: size(1.8),
       WebkitAppearance: 'none',
       fontFamily: 'inherit',
       fontWeight: '300',
@@ -18,7 +19,6 @@ class TextInput extends React.Component {
       paddingRight: size(0.4),
       marginRight: size(0.1),
       borderRadius: size(0.2),
-      float: 'left'
     };
     let type = this.props.type;
     if (!type) type = "text";
