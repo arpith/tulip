@@ -9,7 +9,6 @@ class TextInput extends React.Component {
       fontFamily: 'inherit',
       fontWeight: '300',
       border: 'thin solid #D6D5D5',
-      color: 'white',
       fontSize: size(),
       background: 'none',
       padding: size(0.2),
