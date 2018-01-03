@@ -6,7 +6,8 @@ module.exports = {
     './app/main.jsx'
   ],
   externals: {
-    'graceful-fs': '{}'
+    'graceful-fs': '{}',
+    'fs-readfile-promise': '{}'
   },
   output: {
     path: path.join(__dirname, 'public'),
