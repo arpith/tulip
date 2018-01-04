@@ -6,6 +6,15 @@ import {
   UPDATE_USERS,
 } from '../constants.js';
 
+export function markAsRead(messages) {
+  return (dispatch, getState) => {
+    const config = getState().config;
+    const z = zulip(config);
+    const flag = 'read';
+    return z.messages.flags.add({ flag, messages });
+  };
+}
+
 export function fetchStreams(redirect) {
   return (dispatch, getState) => {
     const config = getState().config;
