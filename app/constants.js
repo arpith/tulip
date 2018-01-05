@@ -2,3 +2,4 @@ export const SIGN_IN = 'SIGN_IN';
 export const UPDATE_STREAMS = 'UPDATE_STREAMS';
 export const UPDATE_MESSAGES = 'UPDATE_MESSAGES';
 export const UPDATE_USERS = 'UPDATE_USERS';
+export const UPDATE_POINTER = 'UPDATE_POINTER';

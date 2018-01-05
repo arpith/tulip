@@ -4,6 +4,7 @@ import {
   UPDATE_STREAMS,
   UPDATE_MESSAGES,
   UPDATE_USERS,
+  UPDATE_POINTER,
 } from '../constants.js';
 
 export function markAsRead(messages) {
@@ -12,6 +13,20 @@ export function markAsRead(messages) {
     const z = zulip(config);
     const flag = 'read';
     return z.messages.flags.add({ flag, messages });
+  };
+}
+
+export function updatePointer(id) {
+  return (dispatch, getState) => {
+    const config = getState().config;
+    return zulip(config).users.me.pointer.update(id).then(({ result }) => {
+      if (result === 'success') {
+        dispatch({
+          type: UPDATE_POINTER,
+          pointer: id,
+        });
+      }
+    });
   };
 }
 
@@ -38,6 +53,10 @@ export function fetchMessages(redirect) {
       num_after: 10,
     };
     return z.users.me.pointer.retrieve().then((res) => {
+      dispatch({
+        type: UPDATE_POINTER,
+        pointer: res.pointer,
+      });
       params.anchor = res.pointer;
       return z.messages.retrieve(params);
     }).then((res) => {
