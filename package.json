@@ -44,7 +44,7 @@
     "throng": "^4.0.0",
     "underscore": "^1.8.3",
     "webpack": "^1.13.2",
-    "zulip-js": "arpith/zulip-js"
+    "zulip-js": "git+https://github.com/arpith/zulip-js.git"
   },
   "devDependencies": {
     "eslint": "^3.5.0",
