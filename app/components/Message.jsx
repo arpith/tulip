@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { throttle } from 'underscore';
 import Avatar from './Avatar';
 import Sender from './Sender';
@@ -6,14 +6,6 @@ import Timestamp from './Timestamp';
 
 // see https://github.com/fkhadra/react-on-screen/blob/master/src/TrackVisibility.js
 class Message extends React.Component {
-  static propTypes = {
-    location: PropTypes.object
-  };
-
-  static contextTypes = {
-    store: PropTypes.any,
-  };
-
   constructor(props, context) {
     super(props, context);
     this.isRead = this.isRead.bind(this);
