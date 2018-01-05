@@ -1,10 +1,17 @@
-import { SIGN_IN, UPDATE_STREAMS, UPDATE_MESSAGES, UPDATE_USERS } from '../constants';
+import {
+  SIGN_IN,
+  UPDATE_STREAMS,
+  UPDATE_MESSAGES,
+  UPDATE_USERS,
+  UPDATE_POINTER,
+} from '../constants';
 
 const initialState = {
   config: {},
   streams: [],
   messages: [],
   users: [],
+  pointer: 0,
 };
 
 export function config(state, action) {
@@ -43,6 +50,16 @@ export function users(state, action) {
       return action.users;
     default:
       if (!state) return initialState.users;
+      return state;
+  }
+}
+
+export function pointer(state, action) {
+  switch (action.type) {
+    case UPDATE_POINTER:
+      return action.pointer;
+    default:
+      if (!state) return initialState.pointer;
       return state;
   }
 }
