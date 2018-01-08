@@ -37,7 +37,7 @@ export function streams(state, action) {
 export function messages(state, action) {
   switch (action.type) {
     case UPDATE_MESSAGES:
-      return action.messages;
+      return state.concat(action.messages);
     default:
       if (!state) return initialState.messages;
       return state;
