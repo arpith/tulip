@@ -33,14 +33,12 @@ function batchUpdate(markAsRead, updatePointer, fetchMessages) {
       const lastID = messages[messages.length - 1];
       markAsRead(messages);
       updatePointer(lastID);
-      console.log("calling fetchmessages from batchupdate");
       fetchMessages();
     }
   };
 }
 
 function Messages({ messages, markAsRead, updatePointer, fetchMessages }) {
-  console.log(messages);
   const update = batchUpdate(markAsRead, updatePointer, fetchMessages);
   const message = (m) => <Message message={m} 
     key={m.id} 
