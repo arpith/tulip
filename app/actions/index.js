@@ -5,11 +5,11 @@ import {
   UPDATE_MESSAGES,
   UPDATE_USERS,
   UPDATE_POINTER,
-} from '../constants.js';
+} from '../constants';
 
 export function markAsRead(messages) {
   return (dispatch, getState) => {
-    const config = getState().config;
+    const { config } = getState();
     const z = zulip(config);
     const flag = 'read';
     return z.messages.flags.add({ flag, messages });
@@ -18,7 +18,7 @@ export function markAsRead(messages) {
 
 export function updatePointer(id) {
   return (dispatch, getState) => {
-    const config = getState().config;
+    const { config } = getState();
     return zulip(config).users.me.pointer.update(id).then(({ result }) => {
       if (result === 'success') {
         dispatch({
@@ -43,7 +43,7 @@ export function fetchPointer(dispatch, config) {
 
 export function fetchStreams(redirect) {
   return (dispatch, getState) => {
-    const config = getState().config;
+    const { config } = getState();
     const z = zulip(config);
     return z.streams.retrieve().then((res) => {
       dispatch({
@@ -57,14 +57,13 @@ export function fetchStreams(redirect) {
 
 export function fetchMessages(anchor) {
   return (dispatch, getState) => {
-    const config = getState().config;
+    const { config, messages } = getState();
     const params = {
       num_before: 10,
       num_after: 20,
       anchor,
     };
     if (!anchor) {
-      const messages = getState().messages;
       const lastMessage = messages[messages.length - 1];
       params.num_before = 0;
       params.anchor = lastMessage.id;
@@ -80,7 +79,7 @@ export function fetchMessages(anchor) {
 
 export function fetchUsers(redirect) {
   return (dispatch, getState) => {
-    const config = getState().config;
+    const { config } = getState();
     const z = zulip(config);
     return z.users.retrieve({}).then((res) => {
       const users = [].concat(res.members);

@@ -3,5 +3,5 @@
   "globals": {
     "fetch": false,
     "FormData": false
-   }
+  }
 }
