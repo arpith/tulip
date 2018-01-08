@@ -36,7 +36,7 @@ class Message extends React.Component {
     const htmlTop = html.clientHeight;
     const viewHeight = windowTop || htmlTop;
     if (rect.bottom <= viewHeight) {
-      this.props.markAsReadAndUpdatePointer(this.props.message.id);
+      this.props.updateHandler(this.props.message.id);
       this.removeListener();
     }
   }

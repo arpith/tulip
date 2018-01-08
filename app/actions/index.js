@@ -30,6 +30,17 @@ export function updatePointer(id) {
   };
 }
 
+export function fetchPointer(dispatch, config) {
+  const z = zulip(config);
+  return z.users.me.pointer.retrieve().then(({ pointer }) => {
+    dispatch({
+      type: UPDATE_POINTER,
+      pointer,
+    });
+    return pointer;
+  });
+}
+
 export function fetchStreams(redirect) {
   return (dispatch, getState) => {
     const config = getState().config;
@@ -44,27 +55,25 @@ export function fetchStreams(redirect) {
   };
 }
 
-export function fetchMessages(redirect) {
+export function fetchMessages(anchor) {
   return (dispatch, getState) => {
     const config = getState().config;
-    const z = zulip(config);
     const params = {
       num_before: 10,
-      num_after: 10,
+      num_after: 20,
+      anchor,
     };
-    return z.users.me.pointer.retrieve().then((res) => {
-      dispatch({
-        type: UPDATE_POINTER,
-        pointer: res.pointer,
-      });
-      params.anchor = res.pointer;
-      return z.messages.retrieve(params);
-    }).then((res) => {
+    if (!anchor) {
+      const messages = getState().messages;
+      const lastMessage = messages[messages.length - 1];
+      params.num_before = 0;
+      params.anchor = lastMessage.id;
+    }
+    return zulip(config).messages.retrieve(params).then((res) => {
       dispatch({
         type: UPDATE_MESSAGES,
         messages: res.messages,
       });
-      if (redirect) redirect();
     });
   };
 }
@@ -84,14 +93,16 @@ export function fetchUsers(redirect) {
   };
 }
 
-export function signin(config, redirect) {
+export function signin(configWithPassword, redirect) {
   return (dispatch, getState) => {
-    zulip(config).then((client) => {
+    zulip(configWithPassword).then(({ config }) => {
       dispatch({
         type: SIGN_IN,
-        config: client.config,
+        config,
       });
-      fetchMessages()(dispatch, getState);
+      fetchPointer(dispatch, config).then((pointer) => {
+        fetchMessages(pointer)(dispatch, getState);
+      });
       fetchStreams()(dispatch, getState);
       fetchUsers()(dispatch, getState);
       if (redirect) redirect();
