@@ -48,7 +48,7 @@ function Messages({ messages, markAsRead, updatePointer, fetchMessages }) {
   />;
   const style = {
     flex: 3,
-    overflowX: 'scroll',
+    overflowY: 'scroll',
     paddingRight: '0.8em',
     marginRight: '0.8em',
     height: '100%'
