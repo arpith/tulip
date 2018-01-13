@@ -6,7 +6,7 @@ function Streams({ streams }) {
     paddingLeft: '1.6em',
     paddingRight: '0.8em',
     marginRight: '0.8em',
-    flex: 1,
+    flex: 0.8,
     height: '100%',
     overflowX: 'scroll'
   };
