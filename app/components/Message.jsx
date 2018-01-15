@@ -3,6 +3,7 @@ import { throttle } from 'underscore';
 import Avatar from './Avatar';
 import Sender from './Sender';
 import Timestamp from './Timestamp';
+import ThreadTitle from './ThreadTitle';
 
 // see https://github.com/fkhadra/react-on-screen/blob/master/src/TrackVisibility.js
 class Message extends React.Component {
@@ -43,23 +44,27 @@ class Message extends React.Component {
 
   render() {
     const markedupContent = {__html: this.props.message.content};
-    const style = {
+    const rowFlex = {
       display: 'flex',
       flexDirection: 'row',
-      marginBottom: '1.6em'
     };
+    const columnFlex = {
+      display: 'flex',
+      flexDirection: 'column'
+    };
+    const style = { marginBottom: '1.6em', ...columnFlex };
     return (
       <div style={style} ref={e => this.nodeRef = e}>
-        <Avatar url={this.props.message.avatar_url} />
-        <div>
-          <div style={{
-            display: 'flex',
-            flexDirection: 'row'
-          }}>
-            <Sender name={this.props.message.sender_full_name} />
-            <Timestamp timestamp={this.props.message.timestamp} />
+        <ThreadTitle {...this.props.message} />
+        <div style={rowFlex}>
+          <Avatar url={this.props.message.avatar_url} />
+          <div>
+            <div style={rowFlex}>
+              <Sender name={this.props.message.sender_full_name} />
+              <Timestamp timestamp={this.props.message.timestamp} />
+            </div>
+            <div dangerouslySetInnerHTML={markedupContent} />
           </div>
-          <div dangerouslySetInnerHTML={markedupContent} />
         </div>
       </div>
     );
