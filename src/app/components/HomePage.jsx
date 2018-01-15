@@ -1,8 +1,8 @@
 import React from 'react';
-import Streams from './Streams.jsx';
-import Messages from './Messages.jsx';
-import Users from './Users.jsx';
-import Header from './Header.jsx';
+import Streams from './Streams';
+import Messages from './Messages';
+import Users from './Users';
+import Header from './Header';
 
 class HomePage extends React.Component {
   render() {

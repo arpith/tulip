@@ -1,8 +1,8 @@
 import React from 'react';
-import CurrentSubject from './CurrentSubject.jsx';
-import Search from './Search.jsx';
-import Logo from './Logo.jsx';
-import Icons from './Icons.jsx';
+import CurrentSubject from './CurrentSubject';
+import Search from './Search';
+import Logo from './Logo';
+import Icons from './Icons';
 
 class Header extends React.Component {
   state = {
