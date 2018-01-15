@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import App from './components/App.jsx';
-import HomePage from './components/HomePage.jsx';
-import SignInPage from './components/SignInPage.jsx';
+import App from './components/App';
+import HomePage from './components/HomePage';
+import SignInPage from './components/SignInPage';
 
 function routes(store) {
   function requireAuth(nextState, replace) {

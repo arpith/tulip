@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
-import TextInput from './TextInput.jsx';
-import Label from './Label.jsx';
-import Button from './Button.jsx';
+import TextInput from './TextInput';
+import Label from './Label';
+import Button from './Button';
 import {signin} from '../actions';
 
 class SignInForm extends React.Component {

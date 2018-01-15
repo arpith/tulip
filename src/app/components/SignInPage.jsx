@@ -1,7 +1,7 @@
 import React from 'react';
-import SignInForm from './SignInForm.jsx';
-import Heading from './Heading.jsx';
-import Subheading from './Subheading.jsx';
+import SignInForm from './SignInForm';
+import Heading from './Heading';
+import Subheading from './Subheading';
 
 class SignInPage extends React.Component {
   render() {

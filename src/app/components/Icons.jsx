@@ -1,4 +1,7 @@
 import React from 'react';
+import search from '../../public/images/search.png';
+import user from '../../public/images/user.png';
+
 const style = {
   display: 'flex',
   flexDirection: 'row',
@@ -11,6 +14,6 @@ const imgStyle = {
 };
 
 export default () => <div style={style}>
-  <img src='/images/search.png' style={imgStyle} />
-  <img src='/images/user.png' style={imgStyle} />
+  <img src={search} style={imgStyle} />
+  <img src={user} style={imgStyle} />
 </div>;
