@@ -1,10 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import ThreadTitle from './ThreadTitle';
 
-function CurrentSubject({ subject }) {
-  return <div>{subject}</div>;
+function CurrentSubject(message) {
+  return <div style={{ paddingTop: 7 }}>
+    <ThreadTitle {...message} />
+  </div>;
 }
 
 export default connect((state) => {
-  return state.current_message;
+  return state.currentMessage;
 })(CurrentSubject);
