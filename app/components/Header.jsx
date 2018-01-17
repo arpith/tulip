@@ -23,7 +23,7 @@ class Header extends React.Component {
     return (
       <div style={style}>
         <Logo />
-        <div style={{flex: 3}}>
+        <div style={{flex: 3.1}}>
           {this.state.center}
         </div>
         <Icons showSearch={toggleCenter} />
