@@ -5,7 +5,17 @@ import {
   UPDATE_MESSAGES,
   UPDATE_USERS,
   UPDATE_POINTER,
+  UPDATE_CURRENT_MESSAGE,
 } from '../constants';
+
+export function updateCurrentMessage(message) {
+  return (dispatch) => {
+    dispatch({
+      type: UPDATE_CURRENT_MESSAGE,
+      message,
+    });
+  };
+}
 
 export function markAsRead(messages) {
   return (dispatch, getState) => {

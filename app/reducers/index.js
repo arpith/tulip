@@ -4,6 +4,7 @@ import {
   UPDATE_MESSAGES,
   UPDATE_USERS,
   UPDATE_POINTER,
+  UPDATE_CURRENT_MESSAGE,
 } from '../constants';
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
   messages: [],
   users: [],
   pointer: 0,
+  currentMessage: {},
 };
 
 export function config(state, action) {
@@ -63,3 +65,14 @@ export function pointer(state, action) {
       return state;
   }
 }
+
+export function currentMessage(state, action) {
+  switch (action.type) {
+    case UPDATE_CURRENT_MESSAGE:
+      return action.message;
+    default:
+      if (!state) return initialState.currentMessage;
+      return state;
+  }
+}
+
