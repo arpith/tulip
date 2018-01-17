@@ -6,6 +6,7 @@ import {
   markAsRead,
   updatePointer,
   fetchMessages,
+  updateCurrentMessage,
 } from '../actions';
 
 const listeners = {};
@@ -38,13 +39,14 @@ function batchUpdate(markAsRead, updatePointer, fetchMessages) {
   };
 }
 
-function Messages({ messages, markAsRead, updatePointer, fetchMessages }) {
+function Messages({ messages, markAsRead, updatePointer, fetchMessages, updateHeader, updateCurrentMessage }) {
   const update = batchUpdate(markAsRead, updatePointer, fetchMessages);
   const message = (m) => <Message message={m} 
     key={m.id} 
     addListener={addListener} 
     removeListener={removeListener}
     updateHandler={update}
+    updateHeader={updateCurrentMessage}
   />;
   const style = {
     flex: 3,
@@ -66,6 +68,7 @@ const mapDispatchToProps = dispatch => {
     markAsRead: messages => dispatch(markAsRead(messages)),
     updatePointer: messages => dispatch(updatePointer(messages)),
     fetchMessages: id => dispatch(fetchMessages(id)),
+    updateCurrentMessage: message => dispatch(updateCurrentMessage(message)),
   }
 }
 
