@@ -32,11 +32,10 @@ class Message extends React.Component {
 
   isRead() {
     const rect = this.nodeRef.getBoundingClientRect();
-    const html = document.documentElement;
-    const windowTop = window.innerHeight;
-    const htmlTop = html.clientHeight;
-    const viewHeight = windowTop || htmlTop;
-    if (rect.bottom <= viewHeight) {
+    if ((rect.top < 30) && (rect.bottom > 30)) {
+      this.props.updateHeader(this.props.message);
+    }
+    if (rect.bottom < 30) {
       this.props.updateHandler(this.props.message.id);
       this.removeListener();
     }
