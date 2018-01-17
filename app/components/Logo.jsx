@@ -1,9 +1,15 @@
 import React from 'react';
 
-const style = {
-  height: 40,
-  paddingLeft: '1.6em',
+const divStyle = {
   alignSelf: 'flex-start',
+  flex: 1,
 };
 
-export default () => <img style={style} src="/images/logo.png" />;
+const imgStyle = {
+  paddingLeft: '1.6em',
+  height: 40,
+};
+
+export default () => <div style={divStyle}>
+  <img style={imgStyle} src="/images/logo.png" />
+</div>;
