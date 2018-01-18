@@ -21,6 +21,10 @@ body {
   text-rendering:optimizeLegibility;
   color:#5E5E5E;
 }
+code {
+  font-family: "SF Mono", "Monaco", "Inconsolata", "Fira Mono", "Droid Sans Mono", "Source Code Pro", monospace;
+  font-size: 0.9em;
+}
 a {
   text-decoration: none;
   color: #157DEC;
