@@ -4,7 +4,13 @@ import ThreadTitle from './ThreadTitle';
 import Avatar from './Avatar';
 
 function CurrentSubject(message) {
-  return <div style={{ paddingTop: 7 }}>
+  const style = {
+    display: 'flex',
+    flexDirection: 'row',
+    paddingTop: 7
+  };
+
+  return <div style={style}>
     <Avatar url={message.avatar_url} small={true} />
     <ThreadTitle {...message} />
   </div>;
