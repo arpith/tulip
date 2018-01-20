@@ -4,6 +4,7 @@ import Avatar from './Avatar';
 import Sender from './Sender';
 import Timestamp from './Timestamp';
 import ThreadTitle from './ThreadTitle';
+import AvatarBlank from './AvatarBlank';
 
 // see https://github.com/fkhadra/react-on-screen/blob/master/src/TrackVisibility.js
 class Message extends React.Component {
@@ -56,7 +57,10 @@ class Message extends React.Component {
     const style = { marginBottom: '1.6em', ...columnFlex };
     return (
       <div style={style} ref={e => this.nodeRef = e}>
-        <ThreadTitle {...this.props.message} />
+        <div style={rowFlex}>
+          <AvatarBlank />
+          <ThreadTitle {...this.props.message} />
+        </div>
         <div style={rowFlex}>
           <Avatar url={this.props.message.avatar_url} hidden={this.state.hideAvatar} />
           <div>
