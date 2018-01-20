@@ -1,10 +1,22 @@
 import React from 'react';
 
-const style = {
-  borderRadius: '50%',
-  height: '50',
+const divStyle = {
   alignSelf: 'flex-start',
-  marginRight: '1.6em'
+  marginRight: '1.2em'
 };
 
-export default ({ url }) => <img style={style} src={url} />;
+const imgStyle = {
+  height: 50,
+  borderRadius: '50%'
+};
+
+export default ({ url, hidden, small }) => {
+  let content = <div style={{ width: 50 }}></div>;
+  if (small) {
+    imgStyle.height = 20;
+  }
+  if (!hidden) {
+    content = <img style={imgStyle} src={url} />;
+  }
+  return <div style={divStyle}>{content}</div>;
+}
