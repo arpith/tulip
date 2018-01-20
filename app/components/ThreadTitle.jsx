@@ -3,7 +3,6 @@ import React from 'react';
 const style = {
   display: 'flex',
   flexDirection: 'row',
-  marginLeft: 78,
   fontWeight: 500,
 };
 
