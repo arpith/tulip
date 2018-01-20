@@ -11,6 +11,7 @@ class Message extends React.Component {
     super(props, context);
     this.isRead = this.isRead.bind(this);
     this.throttledIsRead = throttle(this.isRead, 1000);
+    this.state = {};
   }
 
   componentDidMount() {
@@ -34,6 +35,7 @@ class Message extends React.Component {
     const rect = this.nodeRef.getBoundingClientRect();
     if ((rect.top < 30) && (rect.bottom > 30)) {
       this.props.updateHeader(this.props.message);
+      this.setState({ hideAvatar: true });
     }
     if (rect.bottom < 30) {
       this.props.updateHandler(this.props.message.id);
@@ -56,7 +58,7 @@ class Message extends React.Component {
       <div style={style} ref={e => this.nodeRef = e}>
         <ThreadTitle {...this.props.message} />
         <div style={rowFlex}>
-          <Avatar url={this.props.message.avatar_url} />
+          <Avatar url={this.props.message.avatar_url} hidden={this.state.hideAvatar} />
           <div>
             <div style={rowFlex}>
               <Sender name={this.props.message.sender_full_name} />
