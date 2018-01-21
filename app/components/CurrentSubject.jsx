@@ -11,7 +11,7 @@ function CurrentSubject(message) {
   };
 
   return <div style={style}>
-    <Avatar url={message.avatar_url} small={true} />
+    <Avatar url={message.avatar_url} small={true} hidden={!message.avatar_url} />
     <ThreadTitle {...message} />
   </div>;
 }
