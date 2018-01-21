@@ -71,7 +71,7 @@ class Message extends React.Component {
               <Sender name={this.props.message.sender_full_name} />
               <Timestamp timestamp={this.props.message.timestamp} />
             </div>
-            <div dangerouslySetInnerHTML={markedupContent} />
+            <div dangerouslySetInnerHTML={markedupContent} className="messageContent" />
           </div>
         </div>
       </div>
