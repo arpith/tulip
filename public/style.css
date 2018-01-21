@@ -21,7 +21,7 @@ body {
   text-rendering:optimizeLegibility;
   color:#5E5E5E;
 }
-code {
+code, pre {
   font-family: "SF Mono", "Monaco", "Inconsolata", "Fira Mono", "Droid Sans Mono", "Source Code Pro", monospace;
   font-size: 0.9em;
 }
