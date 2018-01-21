@@ -1,5 +1,6 @@
 import React from 'react';
 import { throttle } from 'underscore';
+import EmojiConverter from 'emoji-js';
 import Avatar from './Avatar';
 import Sender from './Sender';
 import Timestamp from './Timestamp';
@@ -45,7 +46,9 @@ class Message extends React.Component {
   }
 
   render() {
-    const markedupContent = {__html: this.props.message.content};
+    const emoji = new EmojiConverter();
+    const contentWithEmojis = emoji.replace_colons(this.props.message.content);
+    const markedupContent = {__html: contentWithEmojis};
     const rowFlex = {
       display: 'flex',
       flexDirection: 'row',
