@@ -34,6 +34,9 @@ a {
 p {
   margin: 0;
 }
+strong {
+  font-weight: 500;
+}
 .emoji {
   height: 1.2em;
 }
