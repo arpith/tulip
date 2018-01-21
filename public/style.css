@@ -37,6 +37,10 @@ p {
 .emoji {
   height: 1.2em;
 }
+.messageContent img {
+  max-width: 100%;
+  height: auto;
+}
 ::-webkit-input-placeholder {
    color: white;
 }
