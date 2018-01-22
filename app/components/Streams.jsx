@@ -7,7 +7,6 @@ function Streams({ streams }) {
     paddingRight: '0.8em',
     marginRight: '0.8em',
     flex: 0.8,
-    height: '100%',
     overflowX: 'scroll'
   };
   const stream = (s) => <div key={s.stream_id}>{s.name}</div>;
