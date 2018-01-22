@@ -6,7 +6,7 @@ import Header from './Header.jsx';
 
 class HomePage extends React.Component {
   render() {
-    const style = { display: 'flex' };
+    const style = { display: 'flex', height: window.innerHeight - 40 };
     return (
       <div>
         <Header />

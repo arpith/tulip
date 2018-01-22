@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 function Users({ users }) {
   const style = {
     flex: 1,
-    height: '100%',
     paddingRight: '0.8em',
     marginRight: '0.8em',
     overflowY: 'scroll'

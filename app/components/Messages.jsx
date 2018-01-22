@@ -53,7 +53,6 @@ function Messages({ messages, markAsRead, updatePointer, fetchMessages, updateHe
     overflowY: 'scroll',
     paddingRight: '0.8em',
     marginRight: '0.8em',
-    height: '100%'
   };
   const throttledOnScroll = throttle(onScroll, 1000);
   return (
