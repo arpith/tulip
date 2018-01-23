@@ -35,6 +35,9 @@ class Message extends React.Component {
 
   isRead() {
     const rect = this.nodeRef.getBoundingClientRect();
+    if (rect.top > 30) {
+      this.setState({ hideAvatar: false });
+    }
     if ((rect.top < 30) && (rect.bottom > 30)) {
       this.props.updateHeader(this.props.message);
       this.setState({ hideAvatar: true });
