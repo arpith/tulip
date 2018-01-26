@@ -1,10 +1,6 @@
 import React from 'react';
+import style from '../styles/heading';
 
-const style = {
-  fontWeight: 'normal',
-  lineHeight: '1.2em',
-  margin: 0
-};
 export default ({text}) => <h1 style={style}>
   {text}
 </h1>;

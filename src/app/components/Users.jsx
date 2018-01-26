@@ -1,13 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import rightColumn from '../styles/rightColumn';
 
 function Users({ users }) {
-  const style = {
-    flex: 1,
-    paddingRight: '0.8em',
-    marginRight: '0.8em',
-    overflowY: 'scroll'
-  };
+  const style = {...rightColumn, overflowY: 'scroll' };
   const user = (u) => <div key={u.email}>{u.full_name}</div>;
   return <div style={style}>{users.map(user)}</div>;
 }

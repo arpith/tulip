@@ -6,6 +6,8 @@ import Sender from './Sender';
 import Timestamp from './Timestamp';
 import ThreadTitle from './ThreadTitle';
 import AvatarBlank from './AvatarBlank';
+import { row, column } from '../styles/flex';
+import { headerHeight, threadTitleHeight } from '../styles/dimensions';
 
 // see https://github.com/fkhadra/react-on-screen/blob/master/src/TrackVisibility.js
 class Message extends React.Component {
@@ -35,14 +37,16 @@ class Message extends React.Component {
 
   isRead() {
     const rect = this.nodeRef.getBoundingClientRect();
-    if (rect.top > 30) {
+    const bodyTop = headerHeight;
+    const messageContentTop = rect.top + threadTitleHeight;
+    if (messageContentTop > bodyTop) {
       this.setState({ hideAvatar: false });
     }
-    if ((rect.top < 30) && (rect.bottom > 30)) {
+    if ((messageContentTop < bodyTop) && (rect.bottom > bodyTop)) {
       this.props.updateHeader(this.props.message);
       this.setState({ hideAvatar: true });
     }
-    if (rect.bottom < 30) {
+    if (rect.bottom < bodyTop) {
       this.props.updateHandler(this.props.message.id);
       this.removeListener();
     }
@@ -52,25 +56,17 @@ class Message extends React.Component {
     const emoji = new EmojiConverter();
     const contentWithEmojis = emoji.replace_colons(this.props.message.content);
     const markedupContent = {__html: contentWithEmojis};
-    const rowFlex = {
-      display: 'flex',
-      flexDirection: 'row',
-    };
-    const columnFlex = {
-      display: 'flex',
-      flexDirection: 'column'
-    };
-    const style = { marginBottom: '1.6em', ...columnFlex };
+    const style = { marginBottom: '1.6em', ...column };
     return (
       <div style={style} ref={e => this.nodeRef = e}>
-        <div style={rowFlex}>
+        <div style={row}>
           <AvatarBlank />
           <ThreadTitle {...this.props.message} />
         </div>
-        <div style={rowFlex}>
+        <div style={row}>
           <Avatar url={this.props.message.avatar_url} hidden={this.state.hideAvatar} />
           <div>
-            <div style={rowFlex}>
+            <div style={row}>
               <Sender name={this.props.message.sender_full_name} />
               <Timestamp timestamp={this.props.message.timestamp} />
             </div>

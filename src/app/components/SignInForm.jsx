@@ -2,7 +2,8 @@ import React, { PropTypes } from 'react';
 import TextInput from './TextInput';
 import Label from './Label';
 import Button from './Button';
-import {signin} from '../actions';
+import { signin } from '../actions';
+import style from '../styles/signInForm';
 
 class SignInForm extends React.Component {
   static propTypes = {
@@ -30,11 +31,6 @@ class SignInForm extends React.Component {
   }
 
   render() {
-    const style = {
-      margin: 'auto',
-      marginTop: '1.6em',
-      marginBottom: '10em'
-    };
     return (
       <form onSubmit={this.login} style={style}>
         <Label htmlFor="username" value="Username" />

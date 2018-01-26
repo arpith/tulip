@@ -3,14 +3,14 @@ import Streams from './Streams';
 import Messages from './Messages';
 import Users from './Users';
 import Header from './Header';
+import body from '../styles/body';
 
 class HomePage extends React.Component {
   render() {
-    const style = { display: 'flex', height: window.innerHeight - 40 };
     return (
       <div>
         <Header />
-        <div style={style}>
+        <div style={body}>
           <Streams />
           <Messages />
           <Users />

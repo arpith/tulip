@@ -8,6 +8,7 @@ import {
   fetchMessages,
   updateCurrentMessage,
 } from '../actions';
+import centerColumn from '../styles/centerColumn';
 
 const listeners = {};
 const messagesToBeFlagged = [];
@@ -48,12 +49,7 @@ function Messages({ messages, markAsRead, updatePointer, fetchMessages, updateHe
     updateHandler={update}
     updateHeader={updateCurrentMessage}
   />;
-  const style = {
-    flex: 3,
-    overflowY: 'scroll',
-    paddingRight: '0.8em',
-    marginRight: '0.8em',
-  };
+  const style = {...centerColumn, overflowY: 'scroll' };
   const throttledOnScroll = throttle(onScroll, 1000);
   return (
     <div style={style} onScroll={throttledOnScroll}>

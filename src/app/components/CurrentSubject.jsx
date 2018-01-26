@@ -2,14 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ThreadTitle from './ThreadTitle';
 import Avatar from './Avatar';
+import style from '../styles/currentSubject';
 
 function CurrentSubject(message) {
-  const style = {
-    display: 'flex',
-    flexDirection: 'row',
-    paddingTop: 7
-  };
-
   return <div style={style}>
     <Avatar url={message.avatar_url} small={true} hidden={!message.avatar_url} />
     <ThreadTitle {...message} />

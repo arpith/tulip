@@ -1,7 +1,4 @@
 import React from 'react';
-
-const style = {
-  fontWeight: 500,
-};
+import style from '../styles/sender';
 
 export default ({ name }) => <div style={style}>{name}</div>;

@@ -3,6 +3,8 @@ import CurrentSubject from './CurrentSubject';
 import Search from './Search';
 import Logo from './Logo';
 import Icons from './Icons';
+import header from '../styles/header';
+import centerColumn from '../styles/centerColumn';
 
 class Header extends React.Component {
   state = {
@@ -10,10 +12,6 @@ class Header extends React.Component {
     hidden: <Search />
   };
   render() {
-    const style = { 
-      display: 'flex',
-      height: 40
-    };
     function toggleCenter() {
       this.setState({ 
         center: this.state.hidden,
@@ -21,9 +19,9 @@ class Header extends React.Component {
       });
     }
     return (
-      <div style={style}>
+      <div style={header}>
         <Logo />
-        <div style={{flex: 3.1}}>
+        <div style={centerColumn}>
           {this.state.center}
         </div>
         <Icons showSearch={toggleCenter} />

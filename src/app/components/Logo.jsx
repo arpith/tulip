@@ -1,16 +1,8 @@
 import React from 'react';
 import logo from '../../public/images/logo.png';
+import leftColumn from '../styles/leftColumn';
+import style from '../styles/logo';
 
-const divStyle = {
-  alignSelf: 'flex-start',
-  flex: 1,
-};
-
-const imgStyle = {
-  paddingLeft: '1.6em',
-  height: 40,
-};
-
-export default () => <div style={divStyle}>
-  <img style={imgStyle} src={logo} />
+export default () => <div style={leftColumn}>
+  <img style={style} src={logo} />
 </div>;

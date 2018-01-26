@@ -1,19 +1,13 @@
 import React from 'react';
 import search from '../../public/images/search.png';
 import user from '../../public/images/user.png';
+import rightColumn from '../styles/rightColumn';
+import icons from '../styles/icons';
+import icon from '../styles/icon';
 
-const style = {
-  display: 'flex',
-  flexDirection: 'row',
-  flex: 1
-};
-
-const imgStyle = {
-  height: 20,
-  padding: 10
-};
-
-export default () => <div style={style}>
-  <img src={search} style={imgStyle} />
-  <img src={user} style={imgStyle} />
+export default () => <div style={rightColumn}>
+  <div style={icons}>
+    <img src={search} style={icon} />
+    <img src={user} style={icon} />
+  </div>
 </div>;

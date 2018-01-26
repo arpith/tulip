@@ -1,18 +1,9 @@
 import React from 'react';
+import threadTitle from '../styles/threadTitle';
+import dot from '../styles/dot';
 
-const style = {
-  display: 'flex',
-  flexDirection: 'row',
-  fontWeight: 500,
-};
-
-const dotStyle = {
-  marginLeft: 4,
-  marginRight: 4,
-};
-
-export default ({ display_recipient, subject }) => <div style={style}>
+export default ({ display_recipient, subject }) => <div style={threadTitle}>
   <div>{display_recipient}</div>
-  <div style={dotStyle}>&middot;</div>
+  <div style={dot}>&middot;</div>
   <div>{subject}</div>
 </div>;
