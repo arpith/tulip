@@ -1,5 +1,9 @@
 {
-  "plugins": ["transform-object-rest-spread", "transform-class-properties",
-	["transform-assets-import-to-string", {"baseDir": "/images"}]],
-  "presets": ["env", "react"]
+  "plugins": ["transform-object-rest-spread", "transform-class-properties"],
+  "presets": ["env", "react"],
+  "env": {
+    "production": {
+      "plugins": [["transform-assets-import-to-string", {"baseDir": "/images"}]]
+    }
+  }
 }
