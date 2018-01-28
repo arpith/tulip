@@ -2,6 +2,10 @@
   "name": "tulip",
   "version": "0.0.2",
   "description": "Experimental Zulip app built using React",
+  "engines": {
+    "node": "9.4.0",
+    "yarn": "1.3.2"
+  },
   "scripts": {
     "lint": "eslint app index.js",
     "test": "npm run lint",
