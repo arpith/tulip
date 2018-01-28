@@ -6,6 +6,7 @@ import Sender from './Sender';
 import Timestamp from './Timestamp';
 import ThreadTitle from './ThreadTitle';
 import AvatarBlank from './AvatarBlank';
+import Reactions from './Reactions';
 import { row, column } from '../styles/flex';
 import { headerHeight, threadTitleHeight } from '../styles/dimensions';
 
@@ -71,6 +72,7 @@ class Message extends React.Component {
               <Timestamp timestamp={this.props.message.timestamp} />
             </div>
             <div dangerouslySetInnerHTML={markedupContent} className="messageContent" />
+            <Reactions reactions={this.props.message.reactions} />
           </div>
         </div>
       </div>
