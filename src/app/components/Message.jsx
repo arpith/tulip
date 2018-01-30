@@ -1,12 +1,12 @@
 import React from 'react';
 import { throttle } from 'underscore';
-import EmojiConverter from 'emoji-js';
 import Avatar from './Avatar';
 import Sender from './Sender';
 import Timestamp from './Timestamp';
 import ThreadTitle from './ThreadTitle';
 import AvatarBlank from './AvatarBlank';
 import Reactions from './Reactions';
+import { replaceColons } from '../emoji';
 import { row, column } from '../styles/flex';
 import { headerHeight, threadTitleHeight } from '../styles/dimensions';
 
@@ -54,8 +54,7 @@ class Message extends React.Component {
   }
 
   render() {
-    const emoji = new EmojiConverter();
-    const contentWithEmojis = emoji.replace_colons(this.props.message.content);
+    const contentWithEmojis = replaceColons(this.props.message.content);
     const markedupContent = {__html: contentWithEmojis};
     const style = { marginBottom: '1.6em', ...column };
     return (

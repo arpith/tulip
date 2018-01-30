@@ -1,10 +1,9 @@
 import React from 'react';
-import EmojiConverter from 'emoji-js';
+import { replaceColons } from '../emoji';
 import { wrapper, count } from '../styles/reaction';
 
 export default ({ emojiName, users }) => {
-  const emojiConverter = new EmojiConverter();
-  const reactionEmoji = emojiConverter.replace_colons(`:${emojiName}:`);
+  const reactionEmoji = replaceColons(`:${emojiName}:`);
   return (<div style={wrapper}>
     <div>{reactionEmoji}</div>
     <div style={count}>{users.length}</div>
