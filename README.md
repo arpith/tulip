@@ -22,7 +22,7 @@ Experimental Zulip client built with React
 - [ ] Larger click/tap areas
 - [ ] No pointy cursor on left / right panel :)
 - [ ] Larger / more visible timestamps
-- [ ] Time -> moment.js for older timestamps
+- [x] Time -> moment.js for older timestamps
 - [ ] Better way to display which stream / thread a message is in
 - [ ] Better way to set which stream / thread a message is going to go to
 - [ ] Easier way to subscribe / unsubscribe from streams (without having to go to a settings page)
