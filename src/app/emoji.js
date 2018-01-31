@@ -1,8 +1,8 @@
 import EmojiConverter from 'emoji-js';
-import aliases from '../public/zulip_emoji_names.json';
+import missing from '../public/zulip_missing_emoji_names.json';
 
 const emojiConverter = new EmojiConverter();
-emojiConverter.addAliases(aliases);
+emojiConverter.addAliases(missing);
 
 export function replaceColons(str) {
   try {
