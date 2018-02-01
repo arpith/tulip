@@ -7,7 +7,8 @@ import ThreadTitle from './ThreadTitle';
 import AvatarBlank from './AvatarBlank';
 import Reactions from './Reactions';
 import { replaceColons } from '../emoji';
-import { row, column } from '../styles/flex';
+import { row } from '../styles/flex';
+import { wrapper, innerWrapper } from '../styles/message';
 import { headerHeight, threadTitleHeight } from '../styles/dimensions';
 
 // see https://github.com/fkhadra/react-on-screen/blob/master/src/TrackVisibility.js
@@ -56,16 +57,15 @@ class Message extends React.Component {
   render() {
     const contentWithEmojis = replaceColons(this.props.message.content);
     const markedupContent = {__html: contentWithEmojis};
-    const style = { marginBottom: '1.6em', ...column };
     return (
-      <div style={style} ref={e => this.nodeRef = e}>
+      <div style={wrapper} ref={e => this.nodeRef = e}>
         <div style={row}>
           <AvatarBlank />
           <ThreadTitle {...this.props.message} />
         </div>
         <div style={row}>
           <Avatar url={this.props.message.avatar_url} hidden={this.state.hideAvatar} />
-          <div>
+          <div style={innerWrapper}>
             <div style={row}>
               <Sender name={this.props.message.sender_full_name} />
               <Timestamp timestamp={this.props.message.timestamp} />

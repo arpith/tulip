@@ -13,6 +13,12 @@
   h1 {font-size: 42px;}
   h2 {font-size: 26px;}
 }
+@font-face {
+  font-family:'SF Mono';
+  font-style:normal;
+  font-weight:400;
+  src:url("./sf-mono_regular.woff") format("woff");
+}
 body {
   padding: 0;
   margin: 0;
@@ -23,7 +29,10 @@ body {
 }
 code, pre {
   font-family: "SF Mono", "Monaco", "Inconsolata", "Fira Mono", "Droid Sans Mono", "Source Code Pro", monospace;
-  font-size: 0.9em;
+  font-size: 0.85em;
+  padding: 0.2em 0.4em;
+  margin: 0;
+  overflow: scroll;
 }
 a {
   text-decoration: none;

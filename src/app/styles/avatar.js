@@ -6,7 +6,7 @@ export const wrapper = {
   alignItems: 'center',
   justifyContent: 'center',
   marginRight: '1.2em',
-  width: avatar,
+  flexBasis: avatar,
 };
 
 export function img (isSmall = false) {
