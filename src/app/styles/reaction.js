@@ -1,11 +1,11 @@
-export const wrapper = {
+export default {
   display: 'flex',
   marginRight: 10,
-};
-
-export const count = {
-  fontSize: '0.7em',
-  fontWeight: 200,
-  paddingLeft: 5,
-  color: 'rgb(146, 146, 146)',
+  backgroundColor: 'rgba(27,31,35,0.05)',
+  borderRadius: 20,
+  width: 32,
+  height: 32,
+  alignItems: 'center',
+  justifyContent: 'center',
+  cursor: 'pointer',
 };
