@@ -1,32 +1,35 @@
 import React from 'react';
 import thunk from 'redux-thunk';
 import { render } from 'react-dom';
-import { Router, browserHistory } from 'react-router';
+import createHistory from 'history/createBrowserHistory';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux';
-import routes from './routes.jsx';
+import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux';
+import { Route } from 'react-router-dom';
+import routes from './routes';
 import * as reducers from './reducers';
 
 const mountNode = document.getElementById('react-mount');
 const preloadedState = window.reduxPreloadedState;
+const history = createHistory();
 
 const middleware = applyMiddleware(
-  routerMiddleware(browserHistory),
+  routerMiddleware(history),
   thunk
 );
 
 const reducer = combineReducers({
   ...reducers,
-  routing: routerReducer,
+  router: routerReducer,
 });
 
 const store = createStore(reducer, preloadedState, middleware);
-const history = syncHistoryWithStore(browserHistory, store);
 
 render(
   <Provider store={store}>
-    <Router history={history} routes={routes(store)} />
+    <ConnectedRouter history={history}>
+      {routes(store)}
+    </ConnectedRouter>
   </Provider>,
   mountNode
 );

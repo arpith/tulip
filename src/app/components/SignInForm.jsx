@@ -1,33 +1,21 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import TextInput from './TextInput';
 import Label from './Label';
 import Button from './Button';
 import { signin } from '../actions';
 import style from '../styles/signInForm';
 
-class SignInForm extends React.Component {
-  static propTypes = {
-    location: PropTypes.object
-  };
-
-  static contextTypes = {
-    store: PropTypes.any,
-    history: PropTypes.object.isRequired
-  };
-
+class SignInForm extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {username: '', password: '', realm: ''};
     this.onChange = (e) => this.setState({[e.target.name]: e.target.value});
-    this.login = this.login.bind(this);
-  }
-
-  login(e) {
-    e.preventDefault();
-    let nextPath = '/';
-    this.context.store.dispatch(signin(this.state, () => {
-      this.context.history.pushState({}, nextPath);
-    }));
+    this.login = (e) => {
+      e.preventDefault();
+      this.props.login(this.state);
+    };
   }
 
   render() {
@@ -64,4 +52,8 @@ class SignInForm extends React.Component {
   }
 }
 
-export default SignInForm;
+export default connect(null, dispatch => ({
+  login: (state) => {
+    dispatch(signin(state, () => dispatch(push('/'))))
+  }
+}))(SignInForm);
