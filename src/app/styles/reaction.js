@@ -1,6 +1,6 @@
 export default {
   display: 'flex',
-  marginRight: 10,
+  marginRight: 8,
   backgroundColor: 'rgba(27,31,35,0.05)',
   borderRadius: 20,
   width: 32,
