@@ -1,6 +1,3 @@
-export default {
-  fontSize: '0.8em',
-  fontWeight: 200,
-  color: '#929292',
-  marginLeft: '0.8em',
-};
+import smallText from './smallText';
+
+export default {...smallText, marginLeft: '0.8em'};
