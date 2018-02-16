@@ -1,5 +1,5 @@
 import React from 'react';
-import style from '../styles/reactionUsers';
+import { hidden, visible } from '../styles/reactionUsers';
 
 export default ({ users, shouldDisplay }) => {
   const names = users.map(user => user.full_name);
@@ -10,9 +10,9 @@ export default ({ users, shouldDisplay }) => {
     joinedNames = names.slice(0, names.length - 1).join(', ');
     joinedNames += ` and ${names[names.length - 1]}`;
   }
-  let display = 'none';
+  let style = hidden;
   if (shouldDisplay) {
-    display = 'flex';
+    style = visible;
   }
-  return <div style={{...style, display}}>{joinedNames}</div>;
+  return <div style={style}>{joinedNames}</div>;
 }
