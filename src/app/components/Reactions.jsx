@@ -21,8 +21,11 @@ export default class Reactions extends Component {
     this.toggleDisplayUsers = () => {
       if (!this.state.displayUsers) {
         const allUsers = [].concat(...Object.values(this.reactionsUsers));
-        const uniqueUsers = new Set(allUsers)
-        this.setState({ users: Array.from(uniqueUsers) });
+        const uniqueUsers = {};
+        for (const user of allUsers) {
+          uniqueUsers[user.email] = user;
+        }
+        this.setState({ users: Object.values(uniqueUsers) });
       }
       this.setState({ displayUsers: !this.state.displayUsers });
     };
