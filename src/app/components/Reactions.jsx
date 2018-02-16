@@ -7,11 +7,13 @@ export default class Reactions extends Component {
   constructor(props) {
     super(props);
     this.reactionsUsers = {};
-    this.props.reactions.forEach(({ emoji_name, user }) => {
-      if (!this.reactionsUsers[emoji_name]) {
-        this.reactionsUsers[emoji_name] = [user];
+    this.emojiNames = {};
+    this.props.reactions.forEach(({ emoji_name, user, emoji_code }) => {
+      this.emojiNames[emoji_code] = emoji_name;
+      if (!this.reactionsUsers[emoji_code]) {
+        this.reactionsUsers[emoji_code] = [user];
       } else {
-        this.reactionsUsers[emoji_name].push(user);
+        this.reactionsUsers[emoji_code].push(user);
       }
     });
     this.state = {
@@ -29,12 +31,17 @@ export default class Reactions extends Component {
       }
       this.setState({ displayUsers: !this.state.displayUsers });
     };
-    this.displayUsers = (emojiName) => this.setState({ users: this.reactionsUsers[emojiName] });
+    this.displayUsers = (emojiCode) => this.setState({ users: this.reactionsUsers[emojiCode] });
   }
 
   render() {
-    const reactions = Object.keys(this.reactionsUsers).map((emojiName) => {
-      return <Reaction emojiName={emojiName} key={emojiName} onHover={() => this.displayUsers(emojiName)} />;
+    const reactions = Object.keys(this.reactionsUsers).map((emojiCode) => {
+      return <Reaction key={emojiCode}
+        emojiCode={emojiCode}
+        emojiName={this.emojiNames[emojiCode]}
+        messageID={this.props.messageID}
+        onHover={() => this.displayUsers(emojiCode)}
+      />;
     });
     return <div style={style} onMouseEnter={this.toggleDisplayUsers} onMouseLeave={this.toggleDisplayUsers} >
       {reactions}

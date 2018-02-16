@@ -7,7 +7,25 @@ import {
   UPDATE_POINTER,
   UPDATE_CURRENT_MESSAGE,
   UPDATE_SUBSCRIPTIONS,
+  ADD_REACTION,
 } from '../constants';
+
+export function addReaction(message_id, emoji_name, emoji_code) {
+  return (dispatch, getState) => {
+    const { config } = getState();
+    return zulip(config)
+      .then(z => z.reactions.add({ message_id, emoji_name, emoji_code }))
+      .then(({ result }) => {
+        if (result === 'success') {
+          dispatch({
+            type: ADD_REACTION,
+            message_id,
+            emoji: emoji_name
+          });
+        }
+      });
+  };
+}
 
 export function updateCurrentMessage(message) {
   return (dispatch) => {
