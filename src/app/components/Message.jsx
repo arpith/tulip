@@ -71,7 +71,7 @@ class Message extends React.Component {
               <Timestamp timestamp={this.props.message.timestamp} />
             </div>
             <div dangerouslySetInnerHTML={markedupContent} className="messageContent" />
-            <Reactions reactions={this.props.message.reactions} />
+            <Reactions reactions={this.props.message.reactions} messageID={this.props.message.id} />
           </div>
         </div>
       </div>

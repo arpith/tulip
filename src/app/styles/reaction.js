@@ -1,4 +1,4 @@
-export default {
+export const style = {
   display: 'flex',
   border: 'none',
   marginRight: 8,
@@ -10,4 +10,7 @@ export default {
   justifyContent: 'center',
   cursor: 'pointer',
   fontSize: 'inherit',
+  transition: 'background-color 200ms linear',
 };
+
+export const hover = {...style, backgroundColor: 'rgba(0,162,255,0.8)' };
