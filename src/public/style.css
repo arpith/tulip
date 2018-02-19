@@ -44,6 +44,9 @@ p {
 strong {
   font-weight: 500;
 }
+blockquote {
+  margin-left: 0.8em;
+}
 .emoji {
   height: 1.2em;
 }
