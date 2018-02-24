@@ -1,9 +1,11 @@
 import React from 'react';
-import threadTitle from '../styles/threadTitle';
-import dot from '../styles/dot';
+import style from '../styles/threadTitle';
+import Recipients from './Recipients';
+import ThreadSubject from './ThreadSubject';
 
-export default ({ display_recipient, subject }) => <div style={threadTitle}>
-  <div>{display_recipient}</div>
-  <div style={dot}>&middot;</div>
-  <div>{subject}</div>
-</div>;
+export default ({ display_recipient, subject }) => {
+  return <div style={style}>
+    <Recipients recipients={display_recipient} />
+    <ThreadSubject subject={subject} />
+  </div>;
+}
