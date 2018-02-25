@@ -49,7 +49,7 @@
     "redux-thunk": "2.1.0",
     "throng": "4.0.0",
     "underscore": "1.8.3",
-    "zulip-js": "git+https://github.com/arpith/zulip-js-plus-plus.git"
+    "zulip-js": "git+https://github.com/zulip/zulip-js.git"
   },
   "devDependencies": {
     "eslint": "4.15.0",

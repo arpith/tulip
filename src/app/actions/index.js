@@ -21,62 +21,67 @@ export function updateCurrentMessage(message) {
 export function markAsRead(messages) {
   return (dispatch, getState) => {
     const { config } = getState();
-    const z = zulip(config);
     const flag = 'read';
-    return z.messages.flags.add({ flag, messages });
+    return zulip(config)
+      .then(z => z.messages.flags.add({ flag, messages }));
   };
 }
 
 export function updatePointer(id) {
   return (dispatch, getState) => {
     const { config } = getState();
-    return zulip(config).users.me.pointer.update(id).then(({ result }) => {
-      if (result === 'success') {
-        dispatch({
-          type: UPDATE_POINTER,
-          pointer: id,
-        });
-      }
-    });
+    return zulip(config)
+      .then(z => z.users.me.pointer.update(id))
+      .then(({ result }) => {
+        if (result === 'success') {
+          dispatch({
+            type: UPDATE_POINTER,
+            pointer: id,
+          });
+        }
+      });
   };
 }
 
 export function fetchPointer(dispatch, config) {
-  const z = zulip(config);
-  return z.users.me.pointer.retrieve().then(({ pointer }) => {
-    dispatch({
-      type: UPDATE_POINTER,
-      pointer,
+  return zulip(config)
+    .then(z => z.users.me.pointer.retrieve())
+    .then(({ pointer}) => {
+      dispatch({
+        type: UPDATE_POINTER,
+        pointer,
+      });
+      return pointer;
     });
-    return pointer;
-  });
 }
 
 export function fetchSubscriptions(redirect) {
   return (dispatch, getState) => {
     const { config } = getState();
-    const z = zulip(config);
-    return z.streams.subscriptions.retrieve().then(({ subscriptions }) => {
-      dispatch({
-        type: UPDATE_SUBSCRIPTIONS,
-        subscriptions,
+    return zulip(config)
+      .then(z => z.streams.subscriptions.retrieve())
+      .then(({ subscriptions }) => {
+        dispatch({
+          type: UPDATE_SUBSCRIPTIONS,
+          subscriptions,
+        });
+        if (redirect) redirect();
       });
-      if (redirect) redirect();
-    });
   };
 }
 
 export function fetchStreams(redirect) {
   return (dispatch, getState) => {
     const { config } = getState();
-    const z = zulip(config);
-    return z.streams.retrieve().then((res) => {
-      dispatch({
-        type: UPDATE_STREAMS,
-        streams: res.streams,
+    return zulip(config)
+      .then(z => z.streams.retrieve())
+      .then((res) => {
+        dispatch({
+          type: UPDATE_STREAMS,
+          streams: res.streams,
+        });
+        if (redirect) redirect();
       });
-      if (redirect) redirect();
-    });
   };
 }
 
@@ -93,27 +98,30 @@ export function fetchMessages(anchor) {
       params.num_before = 0;
       params.anchor = lastMessage.id;
     }
-    return zulip(config).messages.retrieve(params).then((res) => {
-      dispatch({
-        type: UPDATE_MESSAGES,
-        messages: res.messages,
+    return zulip(config)
+      .then(z => z.messages.retrieve(params))
+      .then((res) => {
+        dispatch({
+          type: UPDATE_MESSAGES,
+          messages: res.messages,
+        });
       });
-    });
   };
 }
 
 export function fetchUsers(redirect) {
   return (dispatch, getState) => {
     const { config } = getState();
-    const z = zulip(config);
-    return z.users.retrieve({}).then((res) => {
-      const users = [].concat(res.members);
-      dispatch({
-        type: UPDATE_USERS,
-        users,
+    return zulip(config)
+      .then(z => z.users.retrieve({}))
+      .then((res) => {
+        const users = [].concat(res.members);
+        dispatch({
+          type: UPDATE_USERS,
+          users,
+        });
+        if (redirect) redirect();
       });
-      if (redirect) redirect();
-    });
   };
 }
 
