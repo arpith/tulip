@@ -5,6 +5,7 @@ import {
   UPDATE_USERS,
   UPDATE_POINTER,
   UPDATE_CURRENT_MESSAGE,
+  UPDATE_SUBSCRIPTIONS,
 } from '../constants';
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   users: [],
   pointer: 0,
   currentMessage: {},
+  subscriptions: [],
 };
 
 export function config(state, action) {
@@ -76,3 +78,12 @@ export function currentMessage(state, action) {
   }
 }
 
+export function subscriptions(state, action) {
+  switch (action.type) {
+    case UPDATE_SUBSCRIPTIONS:
+      return action.subscriptions;
+    default:
+      if (!state) return initialState.subscriptions;
+      return state;
+  }
+}
