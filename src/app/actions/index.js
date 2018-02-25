@@ -6,6 +6,7 @@ import {
   UPDATE_USERS,
   UPDATE_POINTER,
   UPDATE_CURRENT_MESSAGE,
+  UPDATE_SUBSCRIPTIONS,
 } from '../constants';
 
 export function updateCurrentMessage(message) {
@@ -49,6 +50,20 @@ export function fetchPointer(dispatch, config) {
     });
     return pointer;
   });
+}
+
+export function fetchSubscriptions(redirect) {
+  return (dispatch, getState) => {
+    const { config } = getState();
+    const z = zulip(config);
+    return z.streams.subscriptions.retrieve().then(({ subscriptions }) => {
+      dispatch({
+        type: UPDATE_SUBSCRIPTIONS,
+        subscriptions,
+      });
+      if (redirect) redirect();
+    });
+  };
 }
 
 export function fetchStreams(redirect) {
@@ -112,6 +127,7 @@ export function signin(configWithPassword, redirect) {
       fetchPointer(dispatch, config).then((pointer) => {
         fetchMessages(pointer)(dispatch, getState);
       });
+      fetchSubscriptions()(dispatch, getState);
       fetchStreams()(dispatch, getState);
       fetchUsers()(dispatch, getState);
       if (redirect) redirect();
