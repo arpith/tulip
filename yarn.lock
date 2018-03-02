@@ -4960,9 +4960,9 @@ yargs@~3.10.0:
     decamelize "^1.0.0"
     window-size "0.1.0"
 
-"zulip-js@git+https://github.com/arpith/zulip-js.git":
+"zulip-js@git+https://github.com/arpith/zulip-js-plus-plus.git":
   version "1.0.12"
-  resolved "git+https://github.com/arpith/zulip-js.git#b6c7f2037c6b7b9bc99ff7adbc9d0b1e1f23a007"
+  resolved "git+https://github.com/arpith/zulip-js-plus-plus.git#b6c7f2037c6b7b9bc99ff7adbc9d0b1e1f23a007"
   dependencies:
     es6-promise "^3.2.1"
     isomorphic-fetch "^2.2.1"
