@@ -4,7 +4,7 @@
   "description": "Experimental Zulip app built using React",
   "engines": {
     "node": "9.4.0",
-    "yarn": "1.3.2"
+    "yarn": "1.5.1"
   },
   "scripts": {
     "lint": "eslint app index.js",
