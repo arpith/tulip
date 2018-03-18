@@ -18,6 +18,15 @@ const initialState = {
   subscriptions: [],
 };
 
+function updateMessage(messages, message) {
+  const storedMessage = messages.find(e => e.id === message.id);
+  if (storedMessage === undefined) {
+    messages.push(message);
+  } else {
+    Object.assign(storedMessage, message);
+  }
+}
+
 export function config(state, action) {
   switch (action.type) {
     case SIGN_IN:
@@ -41,7 +50,10 @@ export function streams(state, action) {
 export function messages(state, action) {
   switch (action.type) {
     case UPDATE_MESSAGES:
-      return state.concat(action.messages);
+      for (const message of action.messages) {
+        updateMessage(state, message);
+      }
+      return state.slice();
     default:
       if (!state) return initialState.messages;
       return state;
