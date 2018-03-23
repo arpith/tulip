@@ -1,17 +1,24 @@
 import { avatar, smallAvatar } from './dimensions';
 
-export const wrapper = {
-  display: 'flex',
-  alignSelf: 'flex-start',
-  alignItems: 'center',
-  justifyContent: 'center',
-  marginRight: '1.2em',
-  flexBasis: avatar,
-};
+export function wrapper(size) {
+  const style = {
+    display: 'flex',
+    alignSelf: 'flex-start',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: '1.2em',
+    flexBasis: avatar,
+  };
+  if (size === "small") {
+    style.flexBasis = smallAvatar;
+    style.marginRight = '1em';
+  }
+  return style;
+}
 
-export function img (isSmall = false) {
+export function img(size) {
   const style = { borderRadius: '50%', height: avatar };
-  if (isSmall === true) {
+  if (size === "small") {
     style.height = smallAvatar;
   }
   return style;

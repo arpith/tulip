@@ -2,7 +2,8 @@ import { row } from './flex';
 
 export const wrapper = {
   ...row,
-  alignItems: 'center',
+  paddingTop: '1em',
+  paddingLeft: '0.4em',
 };
 
 export const name = {
