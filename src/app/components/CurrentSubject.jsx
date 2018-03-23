@@ -6,7 +6,7 @@ import style from '../styles/currentSubject';
 
 function CurrentSubject(message) {
   return <div style={style}>
-    <Avatar url={message.avatar_url} small={true} hidden={!message.avatar_url} />
+    <Avatar url={message.avatar_url} imgSize="small" hidden={!message.avatar_url} />
     <ThreadTitle {...message} />
   </div>;
 }
