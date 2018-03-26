@@ -5066,9 +5066,9 @@ yargs@~3.10.0:
     decamelize "^1.0.0"
     window-size "0.1.0"
 
-"zulip-js@git+https://github.com/zulip/zulip-js.git":
-  version "2.0.2"
-  resolved "git+https://github.com/zulip/zulip-js.git#dec72855807d5ac1cf3fe0a290e91bbb2577ee4d"
+zulip-js@2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/zulip-js/-/zulip-js-2.0.3.tgz#036ca6aac1fca5ca261784817f61b9739e01ba43"
   dependencies:
     es6-promise "^3.2.1"
     fs-readfile-promise "^3.0.0"
