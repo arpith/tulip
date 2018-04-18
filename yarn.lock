@@ -5054,15 +5054,6 @@ yallist@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/yallist/-/yallist-2.1.2.tgz#1c11f9218f076089a47dd512f93c6699a6a81d52"
 
-yargs@~3.10.0:
-  version "3.10.0"
-  resolved "https://registry.yarnpkg.com/yargs/-/yargs-3.10.0.tgz#f7ee7bd857dd7c1d2d38c0e74efbd681d1431fd1"
-  dependencies:
-    camelcase "^1.0.2"
-    cliui "^2.1.0"
-    decamelize "^1.0.0"
-    window-size "0.1.0"
-
 "zulip-js@git+https://github.com/arpith/zulip-js.git#reactions-new":
   version "2.0.2"
   resolved "git+https://github.com/arpith/zulip-js.git#48c5c2ea784abe2cb8b2eb55fba9c82a4bed304c"
