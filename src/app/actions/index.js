@@ -8,6 +8,7 @@ import {
   UPDATE_CURRENT_MESSAGE,
   UPDATE_SUBSCRIPTIONS,
   ADD_REACTION,
+  REMOVE_REACTION,
 } from '../constants';
 
 export function addReaction(message_id, emoji_name, emoji_code) {
@@ -19,6 +20,23 @@ export function addReaction(message_id, emoji_name, emoji_code) {
         if (result === 'success') {
           dispatch({
             type: ADD_REACTION,
+            message_id,
+            emoji: emoji_name
+          });
+        }
+      });
+  };
+}
+
+export function removeReaction(message_id, emoji_name, emoji_code) {
+  return (dispatch, getState) => {
+    const { config } = getState();
+    return zulip(config)
+      .then(z => z.reactions.remove({ message_id, emoji_name, emoji_code }))
+      .then(({ result }) => {
+        if (result === 'success') {
+          dispatch({
+            type: REMOVE_REACTION,
             message_id,
             emoji: emoji_name
           });

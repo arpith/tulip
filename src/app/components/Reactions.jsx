@@ -1,51 +1,58 @@
 import React, { Component } from 'react';
-import Reaction from './Reaction';
+import { connect } from 'react-redux';
+import ReactionsList from './ReactionsList';
 import ReactionUsers from './ReactionUsers';
 import style from '../styles/reactions';
 
-export default class Reactions extends Component {
+class Reactions extends Component {
   constructor(props) {
     super(props);
-    this.reactionsUsers = {};
-    this.emojiNames = {};
-    this.props.reactions.forEach(({ emoji_name, user, emoji_code }) => {
-      this.emojiNames[emoji_code] = emoji_name;
-      if (!this.reactionsUsers[emoji_code]) {
-        this.reactionsUsers[emoji_code] = [user];
-      } else {
-        this.reactionsUsers[emoji_code].push(user);
+    this.emojis = {};
+    this.users = {};
+    for (({ emoji_name, emoji_code, user }) of props.reactions) {
+      if (!this.emojis[emoji_code]) {
+        this.emojis[emoji_code] = {
+          emojiName: emoji_name,
+          emojiCode: emoji_code,
+          userHasReacted: false,
+          users: [],
+        };
       }
-    });
+      if (user.email === this.props.username) {
+        this.emojis[emoji_code].userHasReacted = true;
+      }
+      this.users[user.email] = user;
+      this.emojis[emoji_code].users.push(user);
+    }
     this.state = {
       displayUsers: false,
       users: []
     };
-    this.toggleDisplayUsers = () => {
-      if (!this.state.displayUsers) {
-        const allUsers = [].concat(...Object.values(this.reactionsUsers));
-        const uniqueUsers = {};
-        for (const user of allUsers) {
-          uniqueUsers[user.email] = user;
-        }
-        this.setState({ users: Object.values(uniqueUsers) });
-      }
-      this.setState({ displayUsers: !this.state.displayUsers });
-    };
-    this.displayUsers = (emojiCode) => this.setState({ users: this.reactionsUsers[emojiCode] });
+    this.toggleDisplayUsers = this.toggleDisplayUsers.bind(this);
+    this.displayUsers = this.displayUsers.bind(this);
+  }
+
+  toggleDisplayUsers() {
+    if (!this.state.displayUsers) {
+      this.setState({ users: Object.values(this.users) });
+    }
+    this.setState({ displayUsers: !this.state.displayUsers });
+  }
+
+  displayUsers(emojiCode) {
+    this.setState({ users: this.emojis[emojiCode].users });
   }
 
   render() {
-    const reactions = Object.keys(this.reactionsUsers).map((emojiCode) => {
-      return <Reaction key={emojiCode}
-        emojiCode={emojiCode}
-        emojiName={this.emojiNames[emojiCode]}
-        messageID={this.props.messageID}
-        onHover={() => this.displayUsers(emojiCode)}
-      />;
-    });
     return <div style={style} onMouseEnter={this.toggleDisplayUsers} onMouseLeave={this.toggleDisplayUsers} >
-      {reactions}
+      <ReactionsList emojis={Object.values(this.emojis)}
+        onHover={this.displayUsers}
+        messageID={this.props.messageID}
+      />
       <ReactionUsers users={this.state.users} shouldDisplay={this.state.displayUsers} />
     </div>;
   }
 }
+export default connect(
+  ({config}) => ({username: config.username}),
+)(Reactions);
