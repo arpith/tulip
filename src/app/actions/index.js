@@ -7,8 +7,6 @@ import {
   UPDATE_POINTER,
   UPDATE_CURRENT_MESSAGE,
   UPDATE_SUBSCRIPTIONS,
-  ADD_REACTION,
-  REMOVE_REACTION,
 } from '../constants';
 
 export function addReaction(message_id, emoji_name, emoji_code) {
@@ -18,11 +16,7 @@ export function addReaction(message_id, emoji_name, emoji_code) {
       .then(z => z.reactions.add({ message_id, emoji_name, emoji_code }))
       .then(({ result }) => {
         if (result === 'success') {
-          dispatch({
-            type: ADD_REACTION,
-            message_id,
-            emoji: emoji_name
-          });
+          fetchMessages(message_id, 0, 0)(dispatch, getState);
         }
       });
   };
@@ -35,11 +29,7 @@ export function removeReaction(message_id, emoji_name, emoji_code) {
       .then(z => z.reactions.remove({ message_id, emoji_name, emoji_code }))
       .then(({ result }) => {
         if (result === 'success') {
-          dispatch({
-            type: REMOVE_REACTION,
-            message_id,
-            emoji: emoji_name
-          });
+          fetchMessages(message_id, 0, 0)(dispatch, getState);
         }
       });
   };
@@ -121,12 +111,12 @@ export function fetchStreams(redirect) {
   };
 }
 
-export function fetchMessages(anchor) {
+export function fetchMessages(anchor, num_before = 10, num_after = 20) {
   return (dispatch, getState) => {
     const { config, messages } = getState();
     const params = {
-      num_before: 10,
-      num_after: 20,
+      num_before,
+      num_after,
       anchor,
     };
     if (!anchor) {
