@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { List } from 'react-virtualized'
 import User from './User';
 import rightColumn from '../styles/rightColumn';
 
