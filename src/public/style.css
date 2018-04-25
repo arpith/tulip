@@ -51,12 +51,12 @@ ul, ol {
   margin-top: 0;
   padding-left: 1.2em;
 }
-.emoji {
-  height: 1.2em;
-}
 .messageContent img {
   max-width: 100%;
   height: auto;
+}
+.emoji {
+  height: 1.2em !important;
 }
 ::-webkit-input-placeholder {
    color: white;
