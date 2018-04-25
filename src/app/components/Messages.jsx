@@ -48,7 +48,7 @@ function Messages({ messages, markAsRead, updatePointer, fetchMessages, updateHe
     updateHandler={update}
     updateHeader={updateCurrentMessage}
   />;
-  const style = { overflowY: 'scroll' };
+  const style = { flex: 1, overflowY: 'scroll' };
   const throttledOnScroll = throttle(onScroll, 1000);
   return (
     <div style={style} onScroll={throttledOnScroll}>
