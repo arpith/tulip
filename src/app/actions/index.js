@@ -165,6 +165,9 @@ export function fetchEvent(queueID, lastEventID = -1, waitTime = 1000) {
       .then(({ events }) => {
         const messages = events.filter(e => e.type === "message").map(e => e.message);
         const lastEventID = events[events.length - 1].id;
+        events.filter(e => e.type === "reaction").forEach((e) => {
+          fetchMessages(e.message_id, 0, 0)(dispatch, getState);
+        });
         dispatch({
           type: UPDATE_MESSAGES,
           messages,
@@ -177,7 +180,7 @@ export function fetchEvent(queueID, lastEventID = -1, waitTime = 1000) {
   };
 }
 
-export function registerQueue(eventTypes = ['message'], waitTime = 1000) {
+export function registerQueue(eventTypes = ['message', 'reaction'], waitTime = 1000) {
   return (dispatch, config) => {
     const params = {
       event_types: eventTypes,
