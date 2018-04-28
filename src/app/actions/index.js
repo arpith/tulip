@@ -151,6 +151,49 @@ export function fetchUsers(redirect) {
   };
 }
 
+export function fetchEvent(queueID, lastEventID = -1, waitTime = 1000) {
+  return (dispatch, config) => {
+    const params = {
+      queue_id: queueID,
+      last_event_id: lastEventID,
+      dont_block: false,
+    };
+
+    setTimeout(() => {
+      zulip(config)
+      .then(z => z.events.retrieve(params))
+      .then(({ events }) => {
+        const messages = events.filter(e => e.type === "message").map(e => e.message);
+        const lastEventID = events[events.length - 1].id;
+        dispatch({
+          type: UPDATE_MESSAGES,
+          messages,
+        });
+        fetchEvent(queueID, lastEventID, 10000)(dispatch, config);
+      }).catch(() => {
+        fetchEvent(queueID, lastEventID, waitTime * 2)(dispatch, config);
+      })
+    }, waitTime);
+  };
+}
+
+export function registerQueue(eventTypes = ['message'], waitTime = 1000) {
+  return (dispatch, config) => {
+    const params = {
+      event_types: eventTypes,
+    };
+    return zulip(config)
+      .then(z => z.queues.register(params))
+      .then(({ queue_id }) => {
+        fetchEvent(queue_id)(dispatch, config);
+      }).catch(() => {
+        setTimeout(() => {
+          registerQueue(eventTypes, waitTime * 2)(dispatch, config);
+        }, waitTime);
+      });
+  };
+}
+
 export function signin(configWithPassword, redirect) {
   return (dispatch, getState) => {
     zulip(configWithPassword).then(({ config }) => {
@@ -158,6 +201,7 @@ export function signin(configWithPassword, redirect) {
         type: SIGN_IN,
         config,
       });
+      registerQueue()(dispatch, config);
       fetchPointer(dispatch, config).then((pointer) => {
         fetchMessages(pointer)(dispatch, getState);
       });
