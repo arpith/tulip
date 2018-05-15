@@ -181,6 +181,7 @@ export function registerQueue(eventTypes = ['message'], waitTime = 1000) {
   return (dispatch, config) => {
     const params = {
       event_types: eventTypes,
+      apply_markdown: true,
     };
     return zulip(config)
       .then(z => z.queues.register(params))
