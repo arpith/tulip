@@ -11,6 +11,7 @@ export const style = {
   cursor: 'pointer',
   fontSize: 'inherit',
   transition: 'background-color 200ms linear',
+  outline: 0,
 };
 
 export const hover = {...style, backgroundColor: 'rgba(0,162,255,0.8)' };
