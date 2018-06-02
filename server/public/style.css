@@ -1,0 +1,75 @@
+@media all and (min-device-width:320px) {
+  body {font-size: 17px;}
+  h1 {font-size: 32px;}
+  h2 {font-size: 24px;}
+}
+@media all and (min-device-width:768px) {
+  body {font-size: 17px;}
+  h1 {font-size: 36px;}
+  h2 {font-size: 26px;}
+}
+@media all and (min-device-width:1024px) {
+  body {font-size: 17px;}
+  h1 {font-size: 42px;}
+  h2 {font-size: 26px;}
+}
+@font-face {
+  font-family:'SF Mono';
+  font-style:normal;
+  font-weight:400;
+  src:url("./sf-mono_regular.woff") format("woff");
+}
+body {
+  padding: 0;
+  margin: 0;
+  line-height:1.6em;
+  font-family:-apple-system,system-ui,BlinkMacSystemFont,'Helvetica Neue',helvetica,sans;
+  text-rendering:optimizeLegibility;
+  color:#5E5E5E;
+}
+code, pre {
+  font-family: "SF Mono", "Monaco", "Inconsolata", "Fira Mono", "Droid Sans Mono", "Source Code Pro", monospace;
+  font-size: 0.85em;
+  padding: 0.2em 0.4em;
+  margin: 0;
+  overflow: scroll;
+}
+a {
+  text-decoration: none;
+  color: #157DEC;
+}
+p {
+  margin: 0;
+}
+strong {
+  font-weight: 500;
+}
+blockquote {
+  margin-left: 0.8em;
+}
+ul, ol {
+  margin-top: 0;
+  padding-left: 1.2em;
+}
+.messageContent img {
+  max-width: 100%;
+  height: auto;
+}
+.emoji {
+  height: 1.2em !important;
+}
+::-webkit-input-placeholder {
+   color: white;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: white;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: white;  
+}
+
+:-ms-input-placeholder {  
+   color: white;  
+}
