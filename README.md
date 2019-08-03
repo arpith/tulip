@@ -12,7 +12,7 @@ Experimental Zulip client built with React
 - [ ] Unified Search on top panel
 - [ ] Home, Private Messages, Starred Messages, @-messages and Settings on top panel
 - [ ] Unified Settings page
-- [ ] On Private Messages page, left panel to have abreviated list of users for group chats
+- [ ] On Private Messages page, left panel to have abbreviated list of users for group chats
 
 ## Design
 - [ ] Dark grey left and right panels
