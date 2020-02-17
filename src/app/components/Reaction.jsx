@@ -1,43 +1,25 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 import { replaceColons } from '../emoji';
 import { addReaction, removeReaction } from '../actions';
 import { style, hover } from '../styles/reaction';
 
-class Reaction extends Component {
-  constructor(props) {
-    super(props);
-    if (props.userHasReacted) {
-      this.state = { style: hover };
-    } else {
-      this.state = { style };
-    }
-    this.onHover = this.onHover.bind(this);
-  }
-
-  onHover(shouldHighlight) {
-    if (shouldHighlight) {
-      this.setState({ style: hover });
-    } else {
-      this.setState({ style });
-    }
-    this.props.onHover();
-  }
-
+class Reaction extends PureComponent {
   render() {
     const reactionEmoji = replaceColons(`:${this.props.emojiName}:`);
-    return <button style={this.state.style}
-      onClick={() => {
-        if (this.props.userHasReacted) {
-          this.props.decrement();
-        } else {
-          this.props.increment();
-        }
-      }}
-      onMouseEnter={() => this.onHover(true)}
-      onMouseLeave={() => this.onHover(this.props.userHasReacted)}>
+    const Button = styled.button`${style(this.props.userHasReacted)}`;
+    return <Button onClick={() => {
+      if (this.props.userHasReacted) {
+        this.props.decrement();
+      } else {
+        this.props.increment();
+      }
+    }}
+    onMouseEnter={this.props.onMouseEnter}
+    onMouseLeave={this.props.onMouseLeave}>
       {reactionEmoji}
-    </button>;
+    </Button>;
   }
 }
 

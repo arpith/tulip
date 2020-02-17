@@ -1,4 +1,9 @@
 import React from 'react';
 import TextInput from './TextInput';
 
-export default () => <TextInput size={1.6} />;
+export default (hidden) => {
+  if (hidden) {
+    return <div style={{height: 0}}></div>
+  }
+  return <TextInput size={1.6} />;
+}

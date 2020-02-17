@@ -41,13 +41,13 @@ class Message extends React.Component {
     const rect = this.nodeRef.getBoundingClientRect();
     const bodyTop = headerHeight;
     const messageContentTop = rect.top + threadTitleHeight;
-    if (messageContentTop > bodyTop) {
-      this.setState({ hideAvatar: false });
-    }
-    if ((messageContentTop < bodyTop) && (rect.bottom > bodyTop)) {
-      this.props.updateHeader(this.props.message);
-      this.setState({ hideAvatar: true });
-    }
+    //    if (messageContentTop > bodyTop) {
+    //this.setState({ hideAvatar: false });
+    //}
+    //if ((messageContentTop < bodyTop) && (rect.bottom > bodyTop)) {
+    //this.props.updateHeader(this.props.message);
+    // this.setState({ hideAvatar: true });
+    //}
     if (rect.bottom < bodyTop) {
       this.props.updateHandler(this.props.message.id);
       this.removeListener();
@@ -57,6 +57,7 @@ class Message extends React.Component {
   render() {
     const contentWithEmojis = replaceColons(this.props.message.content);
     const markedupContent = {__html: contentWithEmojis};
+    const titleRowStyle = {...row, position: 'sticky', top: 0}
     return (
       <div style={wrapper} ref={e => this.nodeRef = e}>
         <div style={row}>
@@ -64,7 +65,7 @@ class Message extends React.Component {
           <ThreadTitle {...this.props.message} />
         </div>
         <div style={row}>
-          <Avatar url={this.props.message.avatar_url} hidden={this.state.hideAvatar} />
+          <Avatar url={this.props.message.avatar_url} hidden={this.state.hideAvatar} sticky={true} />
           <div style={innerWrapper}>
             <div style={row}>
               <Sender name={this.props.message.sender_full_name} />

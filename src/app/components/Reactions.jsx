@@ -8,12 +8,12 @@ class Reactions extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      users: [],
       displayUsers: false,
       ...this.buildEmojisAndAllUsers(props)
     };
     this.toggleDisplayUsers = this.toggleDisplayUsers.bind(this);
     this.displayUsers = this.displayUsers.bind(this);
+    this.displayAllUsers = this.displayAllUsers.bind(this);
   }
 
   buildEmojisAndAllUsers({ reactions, username }) {
@@ -34,7 +34,8 @@ class Reactions extends Component {
       users[user.email] = user;
       emojis[emoji_code].users.push(user);
     }
-    return { emojis, allUsers: Object.values(users) };
+    const allUsers = Object.values(users);
+    return { emojis, allUsers, users: allUsers };
   }
 
   componentWillReceiveProps(props) {
@@ -42,11 +43,8 @@ class Reactions extends Component {
   }
 
   toggleDisplayUsers() {
-    this.setState(({ allUsers, displayUsers }) => {
-      if (!displayUsers) {
-        return { users: allUsers, displayUsers: true };
-      }
-      return { displayUsers: false };
+    this.setState(({  displayUsers }) => {
+      return { displayUsers: !displayUsers };
     });
   }
 
@@ -54,10 +52,15 @@ class Reactions extends Component {
     this.setState(({ emojis }) => ({users: emojis[emojiCode].users}));
   }
 
+  displayAllUsers() {
+    this.setState(({ allUsers }) => ({users: allUsers}));
+  }
+
   render() {
     return <div style={style} onMouseEnter={this.toggleDisplayUsers} onMouseLeave={this.toggleDisplayUsers} >
       <ReactionsList emojis={Object.values(this.state.emojis)}
-        onHover={this.displayUsers}
+        displayUsers={this.displayUsers}
+        displayAllUsers={this.displayAllUsers}
         messageID={this.props.messageID}
       />
       <ReactionUsers users={this.state.users} shouldDisplay={this.state.displayUsers} />
